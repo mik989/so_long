@@ -106,3 +106,4 @@ char	*get_next_line(int fd)
 	stringa = ft_prossima_linea(stringa);
 	return (linea);
 }
+
