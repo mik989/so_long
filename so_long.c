@@ -3,43 +3,29 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-char **ft_get_map(char *path_ber)
+char *ft_get_map(char *path_ber)
 {
-	int i;
-	int fd;
-	int trigger;
-	int array_hight;
-	char *str;	
-	char **array;
+	int fd;	
+	char *str;		
+	char *buff;
+	
+	str = ft_calloc(1,1);
+	fd = open(path_ber, O_RDONLY);	
 
-	fd = open(path_ber, O_RDONLY);
-	trigger = 1;
-	array_hight = 0;
-	i = 0;
-
-	while(get_next_line(fd))
+	while(1)
 	{
-		if (trigger == 1)
-			str =  get_next_line(fd);
-		trigger = 0;
-		array_hight++;
+		buff = get_next_line(fd);		
+		if(buff == NULL)
+				{				
+					close(fd);	
+					free(buff);	
+					break;
+				}
+		str = ft_strjoinf(str, buff);
+		free(buff);
 	}
 
-	i = ft_strlen(str) - 2;
-
-	array = malloc(sizeof(char) * (i + 1) * (array_hight + 1));
-
-	i = 0;
-	close(fd);
-	fd = open(path_ber, O_RDONLY);
-
-	while(i < array_hight)
-	{
-		array[i] = get_next_line(fd);
-		i++;
-	}	
-	close(fd);
-	return(array);
+	return(str);
 }
 int ft_close()
 {
@@ -66,29 +52,27 @@ int main(void)
 {
 	t_mlx	init;
 	char *path_ber;
-	char **array_map;
-	int x;
-	int y;
-
-	x = 0;
-	y = 0;
+	char *array_map;
+	int i = 0;	
 
 	init.mlx = mlx_init();
 	path_ber = "test.ber";
 	array_map = ft_get_map(path_ber);
 
-	while(array_map[x][y])
+
+
+	while(array_map[i] != '\0')
 	{
-		
+		write(1, &array_map[i], 1);
+		i++; 
 	}
-
-	init.img = mlx_xpm_to_image(init.mlx, init.relative_path, &init.img_width, &init.img_height);
-
-	init.win = mlx_new_window(init.mlx, init.img_width, init.img_height, "Hello Word");
-	mlx_put_image_to_window(init.mlx, init.win, init.img, 0, 0);
+	//init.img = mlx_xpm_to_image(init.mlx, init.relative_path, &init.img_width, &init.img_height);
+	init.win = mlx_new_window(init.mlx, 500, 500, "Hello Word");
+	//mlx_put_image_to_window(init.mlx, init.win, init.img, 0, 0);
 
 	mlx_key_hook(init.win, key_input, &init);
 	mlx_hook(init.win, 17, 0, ft_close, (void *)0);
+		ft_map_render('1', &init);
 
 	mlx_loop(init.mlx);
 	free(array_map);
