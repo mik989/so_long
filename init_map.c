@@ -1,6 +1,6 @@
 #include "so_long.h"
 
-t_tile **ft_tilemap_alloc(char *map)
+t_tile **ft_tilemap_alloc(char *map, t_mlx *init)
 {
     t_tile **tilemap;
     int y = 1;
@@ -15,6 +15,8 @@ t_tile **ft_tilemap_alloc(char *map)
                 y++;        
         i++;
     }
+    init->lines = x - 1;
+    init->columns = y;
 
     tilemap = malloc(sizeof(t_tile *) * (y + 1));
     tilemap[y] = '\0';
