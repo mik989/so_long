@@ -1,7 +1,8 @@
 #include "so_long.h"
 
-t_tile **ft_tilemap_alloc(t_tile **tilemap, char *map)
+t_tile **ft_tilemap_alloc(char *map)
 {
+    t_tile **tilemap;
     int y = 1;
     int x = 0;
     int i = 0;
@@ -15,7 +16,13 @@ t_tile **ft_tilemap_alloc(t_tile **tilemap, char *map)
         i++;
     }
 
-    tilemap = malloc(sizeof (t_tile) * (x + 1) * (y + 1));
+    tilemap = malloc(sizeof(t_tile *) * (y + 1));
+    tilemap[y] = '\0';
+    while (y--)
+    {
+        tilemap[y]= malloc(sizeof(t_tile) * x);
+    }
+    
 
     return(tilemap);
 }
@@ -38,9 +45,9 @@ void    ft_init_map(t_tile **tilemap, char *map)
             x = 0;                       
         } 
 
-        tilemap[x][y].position.x = xbuff;
-        tilemap[x][y].position.y = ybuff;
-        tilemap[x][y].type = map[i];
+        tilemap[y][x].position.x = xbuff;
+        tilemap[y][x].position.y = ybuff;
+        tilemap[y][x].type = map[i];
         xbuff += SIZE;
         x++;               
         i++;

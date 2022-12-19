@@ -33,7 +33,9 @@ typedef struct struct_tile
 }t_tile;
 
 
-void ft_map_render(char c, t_mlx *init);
+void	ft_map_render(char c, t_mlx *init);
+void	ft_init_map(t_tile **tilemap, char *map);
+t_tile **ft_tilemap_alloc( char *map);
 
 
 

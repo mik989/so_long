@@ -51,21 +51,16 @@ int	key_input(int keycode, t_mlx *vars)
 int main(void)
 {
 	t_mlx	init;
+	t_tile	**map;
 	char *path_ber;
 	char *array_map;
-	int i = 0;	
 
+	//map = ft_calloc(1, 1);
 	init.mlx = mlx_init();
 	path_ber = "test.ber";
 	array_map = ft_get_map(path_ber);
-
-
-
-	while(array_map[i] != '\0')
-	{
-		write(1, &array_map[i], 1);
-		i++; 
-	}
+	map = ft_tilemap_alloc(array_map);
+	ft_init_map(map, array_map);
 	//init.img = mlx_xpm_to_image(init.mlx, init.relative_path, &init.img_width, &init.img_height);
 	init.win = mlx_new_window(init.mlx, 500, 500, "Hello Word");
 	//mlx_put_image_to_window(init.mlx, init.win, init.img, 0, 0);
