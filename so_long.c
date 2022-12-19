@@ -62,7 +62,7 @@ int main(void)
 	init.map = ft_tilemap_alloc(array_map, &init);
 	ft_init_map(init.map, array_map);
 	//init.img = mlx_xpm_to_image(init.mlx, init.relative_path, &init.img_width, &init.img_height);
-	init.win = mlx_new_window(init.mlx, 500, 500, "so_long");
+	init.win = mlx_new_window(init.mlx, init.lines * SIZE, init.columns * SIZE, "so_long");
 	//mlx_put_image_to_window(init.mlx, init.win, init.img, 0, 0);
 
 	mlx_key_hook(init.win, key_input, &init);
