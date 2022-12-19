@@ -21,6 +21,7 @@ t_tile **ft_tilemap_alloc(char *map)
     while (y--)
     {
         tilemap[y]= malloc(sizeof(t_tile) * x);
+       // tilemap[y][x] = '\0';
     }
     
 
@@ -42,7 +43,8 @@ void    ft_init_map(t_tile **tilemap, char *map)
             ybuff += SIZE;
             y++;
             xbuff = 0;
-            x = 0;                       
+            x = 0;
+            i++;                       
         } 
 
         tilemap[y][x].position.x = xbuff;
