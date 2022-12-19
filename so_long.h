@@ -19,18 +19,19 @@ typedef struct struct_mlx
 	int		img_height;
 }t_mlx;
 
-typedef struct struct_tile
-{
-    t_coord position;
-    char type; 
-}t_tile;
-
 typedef struct s_coord
 {
 	int	x;
 	int	y;
 
 }	t_coord;
+
+typedef struct struct_tile
+{
+    t_coord position;
+    char type; 
+}t_tile;
+
 
 void ft_map_render(char c, t_mlx *init);
 

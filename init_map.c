@@ -17,7 +17,7 @@ t_tile **ft_tilemap_alloc(t_tile **tilemap, char *map)
 
     tilemap = malloc(sizeof (t_tile) * (x + 1) * (y + 1));
 
-    return(tilemap)
+    return(tilemap);
 }
 
 void    ft_init_map(t_tile **tilemap, char *map)
