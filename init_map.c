@@ -30,7 +30,7 @@ t_tile **ft_tilemap_alloc(char *map, t_mlx *init)
     return(tilemap);
 }
 
-void    ft_init_map(t_tile **tilemap, char *map)
+void    ft_init_map(t_mlx init, char *map)
 {
     int x = 0;
     int y = 0;
@@ -49,9 +49,25 @@ void    ft_init_map(t_tile **tilemap, char *map)
             i++;                       
         } 
 
-        tilemap[y][x].position.x = xbuff;
-        tilemap[y][x].position.y = ybuff;
-        tilemap[y][x].type = map[i];
+        init.map[y][x].position.x = xbuff;
+        init.map[y][x].position.y = ybuff;
+        init.map[y][x].type = map[i];
+        if (x > 0)
+        {
+            init.map[y][x].left = &init.map[y][x - 1];
+        }
+        if (y > 0)
+        {
+            init.map[y][x].up = &init.map[y - 1][x];
+        }
+        if (x < init.lines)
+        {
+            init.map[y][x].right = &init.map[y][x + 1];
+        }
+         if (y < init.columns)
+        {
+            init.map[y][x].down = &init.map[y + 1][x];
+        }
         xbuff += SIZE;
         x++;               
         i++;

@@ -15,15 +15,11 @@ void ft_map_render(t_mlx *init, t_tile **tile_map, int x, int y)
         {
             init->img = mlx_xpm_file_to_image(init->mlx, "wall_tiles/corner_ld.xpm", &size, &size);
             mlx_put_image_to_window(init->mlx, init->win, init->img, tile_map[y][x].position.x, tile_map[y][x].position.y);
-           // init->img = mlx_xpm_file_to_image(init->mlx, "wall_tiles/corner_ld.xpm", &size, &size);
-            //mlx_put_image_to_window(init->mlx, init->win, init->img, 32, 32);
         }	
         else if (tile_map[y][x].type == '0')
         {
             init->img = mlx_xpm_file_to_image(init->mlx, "wall_tiles/wall_down.xpm", &size, &size);
             mlx_put_image_to_window(init->mlx, init->win, init->img, tile_map[y][x].position.x, tile_map[y][x].position.y);
-           // init->img = mlx_xpm_file_to_image(init->mlx, "wall_tiles/corner_ld.xpm", &size, &size);
-            //mlx_put_image_to_window(init->mlx, init->win, init->img, 32, 32);
         }	
     }
 }

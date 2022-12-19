@@ -60,18 +60,19 @@ int main(void)
 	path_ber = "test.ber";
 	array_map = ft_get_map(path_ber);
 	init.map = ft_tilemap_alloc(array_map, &init);
-	ft_init_map(init.map, array_map);
+	ft_init_map(init, array_map);
 	//init.img = mlx_xpm_to_image(init.mlx, init.relative_path, &init.img_width, &init.img_height);
 	init.win = mlx_new_window(init.mlx, init.lines * SIZE, init.columns * SIZE, "so_long");
 	//mlx_put_image_to_window(init.mlx, init.win, init.img, 0, 0);
 
 	mlx_key_hook(init.win, key_input, &init);
 	mlx_hook(init.win, 17, 0, ft_close, (void *)0);
-		ft_map_render(&init, init.map, init.lines, init.columns);
+	ft_map_render(&init, init.map, init.lines, init.columns);
 
 	mlx_loop(init.mlx);
 	//free(array_map);
 	//free(map);
+	free(init.map);
 	return(0);
 }
 
