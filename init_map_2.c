@@ -9,16 +9,16 @@ int	ft_ylen(char *str)
 	return (i);
 }
 
-char	*y_dupe(char *str)
+t_tile    *y_dupe(char *str)
 {
 	int i = 0;
 	int len = ft_ylen(str);
-	char *y = malloc(sizeof(char) * (len + 1));
+	t_tile *y = malloc(sizeof(char) * (len + 1));
 	
-	y[len] = '\0';
+	//*y[len] = NULL;
 	while (i < len)
 	{
-		y[i] = str[i];
+		y[i].ori_type = str[i];
 		++i;
 	}
 	return (y);
@@ -28,10 +28,11 @@ void    fill_tilemap(t_tile **array, char *str)
 {
 	int y_index = 0;	
 	
-	while (*str != '\0' || *str != '\n')
+	while (*str != '\0' && *str != '\n')
 	{
 		array[y_index] = y_dupe(str);
 		++y_index;		
+        str++;
 	}
 }
 
@@ -55,7 +56,7 @@ t_tile **ft_tilemap_alloc(char *map, t_mlx *init)
     init->columns = y;
 
     tilemap = malloc(sizeof(t_tile *) * (y + 1));
-    tilemap[y] = 0;   
+    tilemap[y] = NULL;   
     
     fill_tilemap(tilemap, map);
 

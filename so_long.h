@@ -20,6 +20,7 @@ typedef struct struct_tile
 {
 	t_coord				position;
 	char				type;
+	char				ori_type;
 	struct struct_tile	*up;
 	struct struct_tile	*down;
 	struct struct_tile	*left;

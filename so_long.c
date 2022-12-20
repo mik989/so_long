@@ -27,8 +27,20 @@ char *ft_get_map(char *path_ber)
 
 	return(str);
 }
-int ft_close()
+void ft_freemap(t_mlx *init)
 {
+	int y;
+	y = init->lines;
+	while (init->map[y--])
+	{
+		free(init->map[y]);
+	}
+}
+int ft_close(t_mlx *init)
+{
+	mlx_destroy_window(init->mlx, init->win);
+	ft_freemap(init);
+	//free(init->map);
 	exit(0);
 	return (0);
 }
@@ -40,12 +52,15 @@ int	key_input(int keycode, t_mlx *init)
 	x = init->kingo.x;
 	y = init->kingo.y;
 	if (keycode == 65307)
-		ft_close();
+		ft_close(init);
 	if (keycode == 65362 || keycode == 119)
 		{
 			if (init->map[y][x].up->type == '0')
 			{
+				//mlx_destroy_image(init->mlx, init->img);
+			//	mlx_destroy_image(init->mlx, init->map[y][x].up.img);
 				init->map[y][x].up->type = 'P';
+				
 				init->map[y][x].type = '0';
 			}
 		}
@@ -54,6 +69,7 @@ int	key_input(int keycode, t_mlx *init)
 			if (init->map[y][x].down->type == '0')
 			{
 			init->map[y][x].down->type = 'P';
+							//mlx_destroy_image(init->mlx, init->img);
 			init->map[y][x].type = '0';
 			}
 		}
@@ -61,6 +77,7 @@ int	key_input(int keycode, t_mlx *init)
 				{if (init->map[y][x].left->type == '0')
 			{
 			init->map[y][x].left->type = 'P';
+							
 			init->map[y][x].type = '0';
 			}
 		}
@@ -101,7 +118,6 @@ int main(void)
 
 	//free(array_map);
 	//free(map);
-	free(init.map);
 	return(0);
 }
 
