@@ -32,19 +32,47 @@ int ft_close()
 	exit(0);
 	return (0);
 }
-int	key_input(int keycode, t_mlx *vars)
+int	key_input(int keycode, t_mlx *init)
 {
-	vars = vars;
+	int x;
+	int y;
+
+	x = init->kingo.x;
+	y = init->kingo.y;
 	if (keycode == 65307)
 		ft_close();
-	else if (keycode == 65362 || keycode == 119)
-		printf("UP\n");
+	if (keycode == 65362 || keycode == 119)
+		{
+			if (init->map[y][x].up->type == '0')
+			{
+				init->map[y][x].up->type = 'P';
+				init->map[y][x].type = '0';
+			}
+		}
 	else if (keycode == 65364 || keycode == 115)
-		printf("DOWN\n");
+		{
+			if (init->map[y][x].down->type == '0')
+			{
+			init->map[y][x].down->type = 'P';
+			init->map[y][x].type = '0';
+			}
+		}
 	else if (keycode == 65361 || keycode == 97)
-		printf("LEFT\n");
+				{if (init->map[y][x].left->type == '0')
+			{
+			init->map[y][x].left->type = 'P';
+			init->map[y][x].type = '0';
+			}
+		}
 	else if (keycode == 65363 || keycode == 100)
-		printf("RIGHT\n");
+				{
+					if (init->map[y][x].right->type == '0')
+			{
+			init->map[y][x].right->type = 'P';
+			init->map[y][x].type = '0';
+			}
+		}
+	ft_map_render(init, init->map, init->lines, init->columns);
 	return (0);
 }
 
@@ -70,6 +98,7 @@ int main(void)
 	ft_map_render(&init, init.map, init.lines, init.columns);
 
 	mlx_loop(init.mlx);
+
 	//free(array_map);
 	//free(map);
 	free(init.map);
