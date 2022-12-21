@@ -16,18 +16,14 @@ t_tile	**ft_tilemap_alloc(char *map, t_mlx *init)
 			x++;
 		if (map[i] == '\n' && map[i + 1] != '\0')
 			y++;
+		if (map[i] == 'C')
+			init->collectible += 1;
 		i++;
 	}
 	init->x = x - 1;
 	init->y = y;
     
 	tilemap = (t_tile**)malloc(sizeof(t_tile *) * (y + 1));
-	//t_tile tilemap[(y-1)*y+(x-1)];
-    //tilemap = malloc(sizeof(t_tile) * (y + 1)*(x));
-    
-	//tilemap[y] = 0;
-	//tilemap[x] = 0;
-
 	while (y--)
 	{
 		tilemap[y] = (t_tile *)malloc(sizeof(t_tile) * (x));
@@ -44,8 +40,8 @@ void	ft_init_map(t_mlx init, char *map)
 	int x = 0;
 	int y = 0;
 	int i = 0;
-	int xbuff = 0;
-	int ybuff = 0;
+	int xbuff = 20;
+	int ybuff = 20;
 
 	while (map[i])
 	{
@@ -53,7 +49,7 @@ void	ft_init_map(t_mlx init, char *map)
 		{
 			ybuff += SIZE;
 			y++;
-			xbuff = 0;
+			xbuff = 20;
 			x = 0;
 			i++;
 		}
@@ -74,4 +70,5 @@ void	ft_init_map(t_mlx init, char *map)
 		x++;
 		i++;
 	}
+	free(map);
 }

@@ -33,8 +33,9 @@ typedef struct struct_mlx
 	void				*win;
 	t_tile				**map;
 	void				*img;
-	char				*addr;
 	t_coord				kingo;
+	int					collectible;
+	int					moves;
 	int					x;
 	int					y;
 }						t_mlx;
