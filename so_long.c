@@ -27,20 +27,21 @@ char *ft_get_map(char *path_ber)
 
 	return(str);
 }
+
 void ft_freemap(t_mlx *init)
 {
 	int y;
-	y = init->lines;
+	y = init->y;
 	while (init->map[y--])
 	{
 		free(init->map[y]);
 	}
+	//free(init->map);
 }
 int ft_close(t_mlx *init)
 {
 	mlx_destroy_window(init->mlx, init->win);
-	ft_freemap(init);
-	//free(init->map);
+	//ft_freemap(init);
 	exit(0);
 	return (0);
 }
@@ -54,33 +55,29 @@ int	key_input(int keycode, t_mlx *init)
 	if (keycode == 65307)
 		ft_close(init);
 	if (keycode == 65362 || keycode == 119)
+	{
+		if (init->map[y][x].up->type == '0')
 		{
-			if (init->map[y][x].up->type == '0')
-			{
-				//mlx_destroy_image(init->mlx, init->img);
-			//	mlx_destroy_image(init->mlx, init->map[y][x].up.img);
-				init->map[y][x].up->type = 'P';
-				
-				init->map[y][x].type = '0';
-			}
+			init->map[y][x].up->type = 'P';
+			init->map[y][x].type = '0';
 		}
+	}
 	else if (keycode == 65364 || keycode == 115)
+	{
+		if (init->map[y][x].down->type == '0')
 		{
-			if (init->map[y][x].down->type == '0')
-			{
 			init->map[y][x].down->type = 'P';
-							//mlx_destroy_image(init->mlx, init->img);
 			init->map[y][x].type = '0';
-			}
 		}
+	}
 	else if (keycode == 65361 || keycode == 97)
-				{if (init->map[y][x].left->type == '0')
-			{
+	{
+		if (init->map[y][x].left->type == '0')
+		{
 			init->map[y][x].left->type = 'P';
-							
 			init->map[y][x].type = '0';
-			}
 		}
+	}
 	else if (keycode == 65363 || keycode == 100)
 				{
 					if (init->map[y][x].right->type == '0')
@@ -89,7 +86,7 @@ int	key_input(int keycode, t_mlx *init)
 			init->map[y][x].type = '0';
 			}
 		}
-	ft_map_render(init, init->map, init->lines, init->columns);
+	ft_map_render(init, init->map, init->x, init->y);
 	return (0);
 }
 
@@ -107,12 +104,12 @@ int main(void)
 	init.map = ft_tilemap_alloc(array_map, &init);
 	ft_init_map(init, array_map);
 	//init.img = mlx_xpm_to_image(init.mlx, init.relative_path, &init.img_width, &init.img_height);
-	init.win = mlx_new_window(init.mlx, init.lines * SIZE, init.columns * SIZE, "so_long");
+	init.win = mlx_new_window(init.mlx, init.x * SIZE, init.y * SIZE, "so_long");
 	//mlx_put_image_to_window(init.mlx, init.win, init.img, 0, 0);
 
 	mlx_key_hook(init.win, key_input, &init);
 	mlx_hook(init.win, 17, 0, ft_close, (void *)0);
-	ft_map_render(&init, init.map, init.lines, init.columns);
+	ft_map_render(&init, init.map, init.x, init.y);
 
 	mlx_loop(init.mlx);
 

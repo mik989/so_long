@@ -18,8 +18,8 @@ t_tile	**ft_tilemap_alloc(char *map, t_mlx *init)
 			y++;
 		i++;
 	}
-	init->lines = x - 1;
-	init->columns = y;
+	init->x = x - 1;
+	init->y = y;
     
 	tilemap = (t_tile**)malloc(sizeof(t_tile *) * (y + 1));
 	//t_tile tilemap[(y-1)*y+(x-1)];
@@ -66,9 +66,9 @@ void	ft_init_map(t_mlx init, char *map)
 			init.map[y][x].left = &init.map[y][x - 1];
 		if (y > 0)
 			init.map[y][x].up = &init.map[y - 1][x];
-		if (x < init.lines)
+		if (x < init.x)
 			init.map[y][x].right = &init.map[y][x + 1];
-		if (y < init.columns)
+		if (y < init.y)
 			init.map[y][x].down = &init.map[y + 1][x];
 		xbuff += SIZE;
 		x++;

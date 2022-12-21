@@ -35,8 +35,8 @@ typedef struct struct_mlx
 	void				*img;
 	char				*addr;
 	t_coord				kingo;
-	int					lines;
-	int					columns;
+	int					x;
+	int					y;
 }						t_mlx;
 
 void					ft_map_render(t_mlx *init, t_tile **tile_map, int x,
