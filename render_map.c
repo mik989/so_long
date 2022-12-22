@@ -1,7 +1,4 @@
-#include "libft/libft.h"
 #include "so_long.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 void	ft_wall_render(t_mlx *init, t_tile **tile_map, int size, int x, int y)
 {

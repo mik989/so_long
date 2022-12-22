@@ -1,7 +1,4 @@
-#include "libft/libft.h"
 #include "so_long.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 void	ft_move_up(t_mlx *init, int x, int y)
 {

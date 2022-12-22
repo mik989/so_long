@@ -1,7 +1,4 @@
 #include "so_long.h"
-#include "libft/libft.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 char *ft_get_map(char *path_ber)
 {
@@ -31,22 +28,25 @@ char *ft_get_map(char *path_ber)
 void ft_freemap(t_mlx *init)
 {
 	t_tile **map;
+
 	map = init->map;
-	int y;
-	y = init->y;
-	while (map[y--])
+	
+	while (*init->map != NULL)
 	{
-		free(map[y]);
+		free(*init->map);
+		init->map++;
 	}
 	free(map);
 }
+
 int ft_close(t_mlx *init)
 {
 	mlx_destroy_window(init->mlx, init->win);
+	mlx_destroy_display(init->mlx);
 	free(init->mlx);
 	//free(init->win);
 	//free(init->img);
-	//ft_freemap(init);
+	ft_freemap(init);
 	exit(0);
 	return (0);
 }
