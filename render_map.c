@@ -87,9 +87,18 @@ void	ft_map_render(t_mlx *init, t_tile **tile_map, int x, int y)
 			}
 			else if (tile_map[y][x].type == 'E')
 			{
-                init->img = mlx_xpm_file_to_image(init->mlx, "wall_tiles/wall_up.xpm", &size,	&size);
-                mlx_put_image_to_window(init->mlx, init->win, init->img, tile_map[y][x].position.x, tile_map[y][x].position.y);
-				mlx_destroy_image(init->mlx, init->img);
+                if (init->collectible > 0)
+				{
+					init->img = mlx_xpm_file_to_image(init->mlx, "door/door_closed.xpm", &size,	&size);
+                	mlx_put_image_to_window(init->mlx, init->win, init->img, tile_map[y][x].position.x, tile_map[y][x].position.y);
+					mlx_destroy_image(init->mlx, init->img);
+				}
+				else
+				{
+					init->img = mlx_xpm_file_to_image(init->mlx, "door/door_open.xpm", &size,	&size);
+                	mlx_put_image_to_window(init->mlx, init->win, init->img, tile_map[y][x].position.x, tile_map[y][x].position.y);
+					mlx_destroy_image(init->mlx, init->img);
+				}
 			}
 			else if (tile_map[y][x].type == 'C')
 			{

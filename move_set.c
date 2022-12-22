@@ -37,6 +37,7 @@ void	ft_move_down(t_mlx *init, int x, int y)
 	}
 	else if (init->map[y][x].down->type == 'E' && init->collectible == 0)
 		ft_close(init);
+	return ;
 }
 void	ft_move_left(t_mlx *init, int x, int y)
 {
@@ -55,6 +56,7 @@ void	ft_move_left(t_mlx *init, int x, int y)
 	}
 	else if (init->map[y][x].left->type == 'E' && init->collectible == 0)
 		ft_close(init);
+	return ;
 }
 void	ft_move_right(t_mlx *init, int x, int y)
 {
@@ -73,14 +75,15 @@ void	ft_move_right(t_mlx *init, int x, int y)
 	}
 	else if (init->map[y][x].right->type == 'E' && init->collectible == 0)
 		ft_close(init);
+	return ;
 }
 int	key_input(int keycode, t_mlx *init)
 {
 	int x;
 	int y;
-	//char *move;
-	//char *col;
-
+	
+/*aggiungere flag per animazione porta ex=2 e animazione collexionabile ex=1*/
+/*rendere tutti i return delle funzioni movimento int*/
 	x = init->kingo.x;
 	y = init->kingo.y;
 	if (keycode == 65307)
@@ -93,19 +96,10 @@ int	key_input(int keycode, t_mlx *init)
 		ft_move_left(init, x, y);
 	else if (keycode == 65363 || keycode == 100)
 		ft_move_right(init, x, y);
-	//mlx_clear_window(init->mlx, init->win);
-	//mlx_put_image_to_window(init->mlx, init->win, init->img, 20, 15);
 	ft_map_render(init, init->map, init->x, init->y);
-	//init->img = mlx_new_image(init->mlx, (init->x * SIZE) + 40, 20);
-	//mlx_put_image_to_window(init->mlx, init->win, init->img, 0, 0);
-	//mlx_destroy_image(init->mlx, init->img);
-	mlx_string_put(init->mlx, init->win, 20, 15, 0xffffffff, "Moves :");
-	//move = ft_itoa(init->moves);
-	//mlx_string_put(init->mlx, init->win, 80, 15, 0xffffffff, move);
-	//free(move);
-	mlx_string_put(init->mlx, init->win, 150, 15, 0xffffffff, "Collectible :");
-	//col = ft_itoa(init->collectible);
-	//mlx_string_put(init->mlx, init->win, 250, 15, 0xffffffff, col);
-		//free(col);
+	init->img = mlx_new_image(init->mlx, (init->x * SIZE) + 40, 20);
+	mlx_put_image_to_window(init->mlx, init->win, init->img, 0, 0);
+	mlx_destroy_image(init->mlx, init->img);
+	ft_counter(init);
 	return (0);
 }

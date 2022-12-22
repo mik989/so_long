@@ -24,19 +24,19 @@ char *ft_get_map(char *path_ber)
 
 	return(str);
 }
-
+/*Chidere perchè bisogna per forza creare una variabile d'appogio per liberare l'ultimo blocco e cosa significa *init->map */
 void ft_freemap(t_mlx *init)
 {
-	t_tile **map;
+	t_tile **tilemap;
 
-	map = init->map;
+	tilemap = init->map;
 	
 	while (*init->map != NULL)
 	{
 		free(*init->map);
 		init->map++;
 	}
-	free(map);
+	free(tilemap);
 }
 
 int ft_close(t_mlx *init)
@@ -51,13 +51,27 @@ int ft_close(t_mlx *init)
 	return (0);
 }
 
+void ft_counter(t_mlx *init)
+{
+	char *move;
+	char *col;
+
+
+	move = ft_itoa(init->moves);
+	col = ft_itoa(init->collectible);
+	mlx_string_put(init->mlx, init->win, 20, 15, 0xffffffff, "Moves :");
+	mlx_string_put(init->mlx, init->win, 80, 15, 0xffffffff, move);
+	mlx_string_put(init->mlx, init->win, 150, 15, 0xffffffff, "Collectible :");
+	mlx_string_put(init->mlx, init->win, 250, 15, 0xffffffff, col);
+	free(move);
+	free(col);	
+}
 int main()
 {
 	t_mlx	init;
 	char *path_ber;
 	char *array_map;
-	//char *move;
-	//char *col;
+	
 	init.collectible = 0;
 	init.moves = 0;
 	init.mlx = mlx_init();
@@ -68,14 +82,7 @@ int main()
 	init.win = mlx_new_window(init.mlx, (init.x * SIZE) + 40, (init.y * SIZE) + 40, "so_long");
 	mlx_hook(init.win, 17, 0, ft_close, (void *)0);
 	ft_map_render(&init, init.map, init.x, init.y);
-	mlx_string_put(init.mlx, init.win, 20, 15, 0xffffffff, "Moves :");
-	//move = ft_itoa(init.moves);
-	//mlx_string_put(init.mlx, init.win, 80, 15, 0xffffffff, ft_itoa(init.moves));
-	//free(move);
-	mlx_string_put(init.mlx, init.win, 150, 15, 0xffffffff, "Collectible :");
-	//col = ft_itoa(init.moves);
-	//mlx_string_put(init.mlx, init.win, 250, 15, 0xffffffff, ft_itoa(init.collectible));
-	//free(col);
+	ft_counter(&init);
 	mlx_key_hook(init.win, key_input, &init);
 	mlx_loop(init.mlx);
 
