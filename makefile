@@ -1,5 +1,5 @@
 NAME = a.out
-SRC = so_long.c render_map.c init_map.c
+SRC = so_long.c render_map.c init_map.c move_set.c
 OBJ = $(SRC:.c=.o)
 
 FLAGS = -Wall -Wextra -Werror
