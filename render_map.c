@@ -44,7 +44,7 @@ void	ft_wall_render(t_mlx *init, t_tile **tile_map, int size, int x, int y)
 		mlx_put_image_to_window(init->mlx, init->win, init->img, tile_map[y][x].position.x, tile_map[y][x].position.y);
 		mlx_destroy_image(init->mlx, init->img);
 	}
-	else if (y == init->y)
+	else if ((y + 1) == init->y)
 	{		
 		init->img = mlx_xpm_file_to_image(init->mlx, "wall_tiles/wall_down.xpm", &size, &size);
 		mlx_put_image_to_window(init->mlx, init->win, init->img, tile_map[y][x].position.x, tile_map[y][x].position.y);
@@ -52,7 +52,7 @@ void	ft_wall_render(t_mlx *init, t_tile **tile_map, int size, int x, int y)
 	}
 	else
 	{		
-		init->img = mlx_xpm_file_to_image(init->mlx, "wall_tiles/wall_down.xpm", &size, &size);
+		init->img = mlx_xpm_file_to_image(init->mlx, "wall_tiles/box.xpm", &size, &size);
 		mlx_put_image_to_window(init->mlx, init->win, init->img, tile_map[y][x].position.x, tile_map[y][x].position.y);
 		mlx_destroy_image(init->mlx, init->img);
 	}
@@ -102,7 +102,7 @@ void	ft_map_render(t_mlx *init, t_tile **tile_map, int x, int y)
 			}
 			else if (tile_map[y][x].type == 'C')
 			{
-                init->img = mlx_xpm_file_to_image(init->mlx, "wall_tiles/wall_down.xpm", &size,	&size);
+                init->img = mlx_xpm_file_to_image(init->mlx, "collect/diamante_1.xpm", &size,	&size);
                 mlx_put_image_to_window(init->mlx, init->win, init->img, tile_map[y][x].position.x, tile_map[y][x].position.y);
 				mlx_destroy_image(init->mlx, init->img);
 			}
