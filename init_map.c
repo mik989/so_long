@@ -1,23 +1,58 @@
 #include "so_long.h"
 
-void	ft_error(char *error, t_mlx *init)
+void	ft_error_map(char *error, t_mlx *init, char *map)
 {
+	free(map);
 	mlx_destroy_display(init->mlx);
 	free(init->mlx);
 	ft_putstr_fd(error, 2);
 	exit (0);
 }
 
+int	check_map(char *map, t_mlx *init)
+{
+	int	i;
+	int f;
+	int len;
+
+	len = 0;
+	f = 1;
+	i = 0;
+	while (map[i])
+	{
+		while (map[i] != '\n' && map[i] != '\0')
+		{
+			i++;
+			len++;
+		}
+		if (f == 0)
+		{
+			init->check.line_2 = len;
+			if (init->check.line_2 != init->check.line_1)
+				ft_error_map("Error! Invalid map\n", init, map);
+			len = 0;
+		}
+		else if (f == 1)
+		{
+			init->check.line_1 = len;
+			f = 0;
+			len = 0;
+		}
+		i++;
+	}
+	if ((init->check.exit > 1 || init->check.player > 1) || (init->check.exit == 0 || init->check.player == 0))
+		ft_error_map("Error! Invalid map\n", init, map);
+	return (1);	
+}
 t_tile	**ft_tilemap_alloc(char *map, t_mlx *init)
 {
 	t_tile	**tilemap;
-	t_check	check;
 	int		y;
 	int		x;
 	int		i;
 
-	check.exit = 0;
-	check.player = 0;
+	init->check.exit = 0;
+	init->check.player = 0;
 	y = 1;
 	x = 0;
 	i = 0;
@@ -30,19 +65,16 @@ t_tile	**ft_tilemap_alloc(char *map, t_mlx *init)
 		if (map[i] == 'C')
 			init->collectible += 1;
 		if (map[i] == 'E')
-			check.exit += 1;
+			init->check.exit += 1;
 		if (map[i] == 'P')
-			check.player += 1;
+			init->check.player += 1;
 		i++;
 	}
 	init->x = x - 1;
 	init->y = y;
-	if ((check.exit > 1 || check.player > 1) || (check.exit == 0 || check.player == 0))
-	{
-		free(map);
-		ft_error("Error! Invalid map\n", init);
-	}
-	tilemap = (t_tile **)malloc(sizeof(t_tile *) * (y + 1));
+
+	if (check_map(map, init) == 1)
+		tilemap = (t_tile **)malloc(sizeof(t_tile *) * (y + 1));
 	while (y--)
 		tilemap[y] = (t_tile *)malloc(sizeof(t_tile) * (x));
 	return (tilemap);
@@ -71,6 +103,8 @@ void	ft_init_map(t_mlx init, char *map)
 			x = 0;
 			i++;
 		}
+		if (!init.map[y])
+			break ;
 		init.map[y][x].position.x = xbuff;
 		init.map[y][x].position.y = ybuff;
 		init.map[y][x].type = map[i];

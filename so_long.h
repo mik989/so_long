@@ -23,6 +23,8 @@ typedef struct s_check
 {
 	int					exit;
 	int					player;
+	int					line_1;
+	int					line_2;
 
 }						t_check;
 
@@ -43,6 +45,7 @@ typedef struct struct_mlx
 	void				*win;
 	t_tile				**map;
 	void				*img;
+	t_check				check;
 	t_coord				kingo;
 	int					collectible;
 	int					moves;
