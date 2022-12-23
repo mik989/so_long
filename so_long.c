@@ -83,8 +83,9 @@ int main()
 	init.map = ft_tilemap_alloc(array_map, &init);
 	ft_init_map(init, array_map);
 	init.win = mlx_new_window(init.mlx, (init.x * SIZE) + 40, (init.y * SIZE) + 40, "so_long");
-	mlx_hook(init.win, 17, 0, ft_close, (void *)0);
 	ft_map_render(&init, init.map, init.x, init.y);
+	mlx_hook(init.win, 17, 0, ft_close, (void *)0);
+	//ft_map_render(&init, init.map, init.x, init.y);
 	ft_counter(&init);
 	mlx_key_hook(init.win, key_input, &init);
 	mlx_loop(init.mlx);

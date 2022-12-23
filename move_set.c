@@ -5,13 +5,19 @@ void	ft_move_up(t_mlx *init, int x, int y)
 	if (init->map[y][x].up->type == '0')
 		{
 			init->map[y][x].up->type = 'P';
+			ft_print_and_destroy(init, "personaggio/ReUmanoFloor.xpm", x, y - 1);
 			init->map[y][x].type = '0';
+			ft_print_and_destroy(init, "wall_tiles/floor.xpm", x, y);
 			init->moves += 1;
 		}
 		else if (init->map[y][x].up->type == 'C')
 		{
 			init->map[y][x].up->type = 'P';
+			ft_print_and_destroy(init, "personaggio/ReUmanoFloor.xpm", x, y - 1);
+			ft_print_and_destroy(init, "personaggio/ReUmanoCollect.xpm", x, y - 1);
+			ft_print_and_destroy(init, "personaggio/ReUmanoFloor.xpm", x, y - 1);
 			init->map[y][x].type = '0';
+			ft_print_and_destroy(init, "wall_tiles/floor.xpm", x, y);
 			init->moves += 1;
 			init->collectible -= 1;
 		}
@@ -25,13 +31,19 @@ void	ft_move_down(t_mlx *init, int x, int y)
 	if (init->map[y][x].down->type == '0')
 	{
 		init->map[y][x].down->type = 'P';
+			ft_print_and_destroy(init, "personaggio/ReUmanoFloor.xpm", x, y + 1);
 		init->map[y][x].type = '0';
+			ft_print_and_destroy(init, "wall_tiles/floor.xpm", x, y);
 		init->moves += 1;
 	}	
 	else if (init->map[y][x].down->type == 'C')
 	{
 		init->map[y][x].down->type = 'P';
+			ft_print_and_destroy(init, "personaggio/ReUmanoFloor.xpm", x, y + 1);
+			ft_print_and_destroy(init, "personaggio/ReUmanoCollect.xpm", x, y + 1);
+			ft_print_and_destroy(init, "personaggio/ReUmanoFloor.xpm", x, y + 1);
 		init->map[y][x].type = '0';
+			ft_print_and_destroy(init, "wall_tiles/floor.xpm", x, y);
 		init->moves += 1;
 		init->collectible -= 1;
 	}
@@ -44,13 +56,19 @@ void	ft_move_left(t_mlx *init, int x, int y)
 	if (init->map[y][x].left->type == '0')
 	{
 		init->map[y][x].left->type = 'P';
+			ft_print_and_destroy(init, "personaggio/ReUmanoFloor.xpm", x - 1, y);
 		init->map[y][x].type = '0';
+			ft_print_and_destroy(init, "wall_tiles/floor.xpm", x, y);
 		init->moves += 1;
 	}
 	else if (init->map[y][x].left->type == 'C')
 	{
 		init->map[y][x].left->type = 'P';
+			ft_print_and_destroy(init, "personaggio/ReUmanoFloor.xpm", x - 1, y);
+			ft_print_and_destroy(init, "personaggio/ReUmanoCollect.xpm", x - 1, y);
+			ft_print_and_destroy(init, "personaggio/ReUmanoFloor.xpm", x - 1, y);
 		init->map[y][x].type = '0';
+			ft_print_and_destroy(init, "wall_tiles/floor.xpm", x, y);
 		init->moves += 1;
 		init->collectible -= 1;
 	}
@@ -63,13 +81,19 @@ void	ft_move_right(t_mlx *init, int x, int y)
 	if (init->map[y][x].right->type == '0')
 	{
 		init->map[y][x].right->type = 'P';
+			ft_print_and_destroy(init, "personaggio/ReUmanoFloor.xpm", x + 1, y);
 		init->map[y][x].type = '0';
+			ft_print_and_destroy(init, "wall_tiles/floor.xpm", x, y);
 		init->moves += 1;
 	}	
 	else if (init->map[y][x].right->type == 'C')
 	{
 		init->map[y][x].right->type = 'P';
+			ft_print_and_destroy(init, "personaggio/ReUmanoFloor.xpm", x + 1, y);
+			ft_print_and_destroy(init, "personaggio/ReUmanoCollect.xpm", x + 1, y);
+			ft_print_and_destroy(init, "personaggio/ReUmanoFloor.xpm", x + 1, y);
 		init->map[y][x].type = '0';
+			ft_print_and_destroy(init, "wall_tiles/floor.xpm", x, y);
 		init->moves = init->moves + 1;
 		init->collectible -= 1;
 	}
@@ -83,7 +107,6 @@ int	key_input(int keycode, t_mlx *init)
 	int y;
 	
 /*aggiungere flag per animazione porta ex=2 e animazione collexionabile ex=1*/
-/*rendere tutti i return delle funzioni movimento int*/
 	x = init->kingo.x;
 	y = init->kingo.y;
 	if (keycode == 65307)
