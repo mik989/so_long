@@ -47,6 +47,7 @@ typedef struct struct_mlx
 	void				*img;
 	t_check				check;
 	t_coord				kingo;
+	t_coord				door;
 	int					collectible;
 	int					moves;
 	int					x;

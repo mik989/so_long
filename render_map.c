@@ -52,10 +52,9 @@ void	ft_map_render(t_mlx *init, t_tile **tile_map, int x, int y)
 			}
 			else if (tile_map[y][x].type == 'E')
 			{
-				if (init->collectible > 0)
-					ft_print_and_destroy(init, "door/door_closed .xpm", x, y);
-				else
-					ft_print_and_destroy(init, "door/door_open.xpm", x, y);
+				ft_print_and_destroy(init, "door/door_closed .xpm", x, y);
+				init->door.x = x;
+				init->door.y = y;
 			}
 			else if (tile_map[y][x].type == 'C')
 				ft_print_and_destroy(init, "collect/key_star.xpm", x, y);

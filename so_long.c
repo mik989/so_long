@@ -24,8 +24,8 @@ char	*ft_get_map(char *path_ber)
 }
 /*Chidere perchè bisogna per forza creare una variabile d'appogio per liberare l'ultimo blocco e cosa significa *init->map */
 /*Gestire errori in caso in cui ci sia più di una E, più di unq P, la E non raggiungibile, C non raggiungibile,
-(i nemici devono essere raggiungibili?), gestire formattazione della mappa (ad esempio se ci sono più /n alla fine e o in mezzo)
-se ci sono più spazi alla fine il programma va in core dump*/
+(i nemici devono essere raggiungibili?), gestire formattazione della mappa (ad esempio se ci sono più /n alla fine e o in mezzo) VRisolto
+se ci sono più spazi alla fine il programma va in core dump V Risolto*/
 
 void	ft_freemap(t_mlx *init)
 {
@@ -65,6 +65,11 @@ void	ft_counter(t_mlx *init)
 	free(col);
 }
 
+/*int	flood_check(t_mlx *init)
+{
+
+
+}*/
 int	main(void)
 {
 	t_mlx	init;
