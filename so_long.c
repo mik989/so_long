@@ -1,39 +1,37 @@
 #include "so_long.h"
 
-char *ft_get_map(char *path_ber)
+char	*ft_get_map(char *path_ber)
 {
-	int fd;	
-	char *str;		
-	char *buff;
-	
-	str = ft_calloc(1,1);
-	fd = open(path_ber, O_RDONLY);	
+	int		fd;	
+	char	*str;		
+	char	*buff;
 
-	while(1)
+	str = ft_calloc(1, 1);
+	fd = open(path_ber, O_RDONLY);
+	while (1)
 	{
-		buff = get_next_line(fd);		
-		if(buff == NULL)
-				{				
-					close(fd);	
-					free(buff);	
-					break;
-				}
+		buff = get_next_line(fd);
+		if (buff == NULL)
+		{
+			close(fd);
+			free(buff);
+			break ;
+		}
 		str = ft_strjoinf(str, buff);
 		free(buff);
 	}
-
-	return(str);
+	return (str);
 }
 /*Chidere perchè bisogna per forza creare una variabile d'appogio per liberare l'ultimo blocco e cosa significa *init->map */
 /*Gestire errori in caso in cui ci sia più di una E, più di unq P, la E non raggiungibile, C non raggiungibile,
 (i nemici devono essere raggiungibili?), gestire formattazione della mappa (ad esempio se ci sono più /n alla fine e o in mezzo)
 se ci sono più spazi alla fine il programma va in core dump*/
-void ft_freemap(t_mlx *init)
+
+void	ft_freemap(t_mlx *init)
 {
-	t_tile **tilemap;
+	t_tile	**tilemap;
 
 	tilemap = init->map;
-	
 	while (*init->map != NULL)
 	{
 		free(*init->map);
@@ -42,23 +40,20 @@ void ft_freemap(t_mlx *init)
 	free(tilemap);
 }
 
-int ft_close(t_mlx *init)
+int	ft_close(t_mlx *init)
 {
 	mlx_destroy_window(init->mlx, init->win);
 	mlx_destroy_display(init->mlx);
 	free(init->mlx);
-	//free(init->win);
-	//free(init->img);
 	ft_freemap(init);
 	exit(0);
 	return (0);
 }
 
-void ft_counter(t_mlx *init)
+void	ft_counter(t_mlx *init)
 {
-	char *move;
-	char *col;
-
+	char	*move;
+	char	*col;
 
 	move = ft_itoa(init->moves);
 	col = ft_itoa(init->collectible);
@@ -67,14 +62,15 @@ void ft_counter(t_mlx *init)
 	mlx_string_put(init->mlx, init->win, 150, 15, 0xffffffff, "Collectible :");
 	mlx_string_put(init->mlx, init->win, 250, 15, 0xffffffff, col);
 	free(move);
-	free(col);	
+	free(col);
 }
-int main()
+
+int	main(void)
 {
 	t_mlx	init;
-	char *path_ber;
-	char *array_map;
-	
+	char	*path_ber;
+	char	*array_map;
+
 	init.collectible = 0;
 	init.moves = 0;
 	init.mlx = mlx_init();
@@ -89,9 +85,5 @@ int main()
 	ft_counter(&init);
 	mlx_key_hook(init.win, key_input, &init);
 	mlx_loop(init.mlx);
-
-	//free(array_map);
-	//free(map);
-	return(0);
+	return (0);
 }
-

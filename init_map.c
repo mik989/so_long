@@ -1,4 +1,5 @@
 #include "so_long.h"
+
 void	ft_error(char *error, t_mlx *init)
 {
 	mlx_destroy_display(init->mlx);
@@ -11,13 +12,12 @@ t_tile	**ft_tilemap_alloc(char *map, t_mlx *init)
 {
 	t_tile	**tilemap;
 	t_check	check;
-
-	check.exit = 0;
-	check.player = 0;
 	int		y;
 	int		x;
 	int		i;
 
+	check.exit = 0;
+	check.player = 0;
 	y = 1;
 	x = 0;
 	i = 0;
@@ -42,8 +42,7 @@ t_tile	**ft_tilemap_alloc(char *map, t_mlx *init)
 		free(map);
 		ft_error("Error! Invalid map\n", init);
 	}
-    
-	tilemap = (t_tile**)malloc(sizeof(t_tile *) * (y + 1));
+	tilemap = (t_tile **)malloc(sizeof(t_tile *) * (y + 1));
 	while (y--)
 		tilemap[y] = (t_tile *)malloc(sizeof(t_tile) * (x));
 	return (tilemap);
@@ -51,12 +50,17 @@ t_tile	**ft_tilemap_alloc(char *map, t_mlx *init)
 
 void	ft_init_map(t_mlx init, char *map)
 {
-	int x = 0;
-	int y = 0;
-	int i = 0;
-	int xbuff = 20;
-	int ybuff = 20;
+	int	x;
+	int	y;
+	int	i;
+	int	xbuff;
+	int	ybuff;
 
+	x = 0;
+	y = 0;
+	i = 0;
+	xbuff = 20;
+	ybuff = 20;
 	while (map[i])
 	{
 		if (map[i] == '\n')
@@ -67,7 +71,6 @@ void	ft_init_map(t_mlx init, char *map)
 			x = 0;
 			i++;
 		}
-
 		init.map[y][x].position.x = xbuff;
 		init.map[y][x].position.y = ybuff;
 		init.map[y][x].type = map[i];

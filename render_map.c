@@ -1,7 +1,8 @@
 #include "so_long.h"
-void ft_print_and_destroy(t_mlx *init, char *path, int x, int y)
+
+void	ft_print_and_destroy(t_mlx *init, char *path, int x, int y)
 {
-	int size;
+	int	size;
 
 	size = SIZE;
 	init->img = mlx_xpm_file_to_image(init->mlx, path, &size, &size);
@@ -29,9 +30,9 @@ void	ft_wall_render(t_mlx *init, int x, int y)
 		ft_print_and_destroy(init, "wall_tiles/wall_down.xpm", x, y);
 	else
 		ft_print_and_destroy(init, "wall_tiles/colonna.xpm", x, y);
-	return;
-
+	return ;
 }
+
 void	ft_map_render(t_mlx *init, t_tile **tile_map, int x, int y)
 {
 	while (y--)
@@ -46,21 +47,18 @@ void	ft_map_render(t_mlx *init, t_tile **tile_map, int x, int y)
 			else if (tile_map[y][x].type == 'P')
 			{
 				ft_print_and_destroy(init, "personaggio/ReUmanoFloor.xpm", x, y);
-				init->kingo.x=x;
-				init->kingo.y=y;
+				init->kingo.x = x;
+				init->kingo.y = y;
 			}
 			else if (tile_map[y][x].type == 'E')
 			{
-                if (init->collectible > 0)
-				ft_print_and_destroy(init, "door/door_closed .xpm", x, y);
+				if (init->collectible > 0)
+					ft_print_and_destroy(init, "door/door_closed .xpm", x, y);
 				else
-				ft_print_and_destroy(init, "door/door_open.xpm", x, y);
+					ft_print_and_destroy(init, "door/door_open.xpm", x, y);
 			}
 			else if (tile_map[y][x].type == 'C')
-			{
 				ft_print_and_destroy(init, "collect/key_star.xpm", x, y);
-				//ft_print_and_destroy(init, "collect/key.xpm", x, y);
-			}
 		}
 	}
 }
