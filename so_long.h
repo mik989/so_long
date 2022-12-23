@@ -8,6 +8,9 @@
 
 // STRUCTS
 # define SIZE 64
+#define MLX_SYNC_IMAGE_WRITABLE		1
+#define MLX_SYNC_WIN_FLUSH_CMD		2
+#define MLX_SYNC_WIN_CMD_COMPLETED	3
 
 typedef struct s_coord
 {
@@ -16,12 +19,12 @@ typedef struct s_coord
 
 }						t_coord;
 
-typedef struct s_anim
+typedef struct s_check
 {
 	int					exit;
-	int					coll;
+	int					player;
 
-}						t_anim;
+}						t_check;
 
 typedef struct struct_tile
 {
@@ -43,7 +46,6 @@ typedef struct struct_mlx
 	t_coord				kingo;
 	int					collectible;
 	int					moves;
-	t_anim				anim;
 	int					x;
 	int					y;
 }						t_mlx;

@@ -28,7 +28,7 @@ void	ft_wall_render(t_mlx *init, int x, int y)
 	else if ((y + 1) == init->y)
 		ft_print_and_destroy(init, "wall_tiles/wall_down.xpm", x, y);
 	else
-		ft_print_and_destroy(init, "wall_tiles/colonna_merda.xpm", x, y);
+		ft_print_and_destroy(init, "wall_tiles/colonna.xpm", x, y);
 	return;
 
 }
@@ -57,7 +57,10 @@ void	ft_map_render(t_mlx *init, t_tile **tile_map, int x, int y)
 				ft_print_and_destroy(init, "door/door_open.xpm", x, y);
 			}
 			else if (tile_map[y][x].type == 'C')
-				ft_print_and_destroy(init, "collect/key.xpm", x, y);
+			{
+				ft_print_and_destroy(init, "collect/key_star.xpm", x, y);
+				//ft_print_and_destroy(init, "collect/key.xpm", x, y);
+			}
 		}
 	}
 }

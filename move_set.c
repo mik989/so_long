@@ -1,5 +1,5 @@
 #include "so_long.h"
-
+int i = 0;
 void	ft_move_up(t_mlx *init, int x, int y)
 {
 	if (init->map[y][x].up->type == '0')

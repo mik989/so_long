@@ -1,8 +1,19 @@
 #include "so_long.h"
+void	ft_error(char *error, t_mlx *init)
+{
+	mlx_destroy_display(init->mlx);
+	free(init->mlx);
+	ft_putstr_fd(error, 2);
+	exit (0);
+}
 
 t_tile	**ft_tilemap_alloc(char *map, t_mlx *init)
 {
 	t_tile	**tilemap;
+	t_check	check;
+
+	check.exit = 0;
+	check.player = 0;
 	int		y;
 	int		x;
 	int		i;
@@ -18,20 +29,23 @@ t_tile	**ft_tilemap_alloc(char *map, t_mlx *init)
 			y++;
 		if (map[i] == 'C')
 			init->collectible += 1;
+		if (map[i] == 'E')
+			check.exit += 1;
+		if (map[i] == 'P')
+			check.player += 1;
 		i++;
 	}
 	init->x = x - 1;
 	init->y = y;
+	if ((check.exit > 1 || check.player > 1) || (check.exit == 0 || check.player == 0))
+	{
+		free(map);
+		ft_error("Error! Invalid map\n", init);
+	}
     
 	tilemap = (t_tile**)malloc(sizeof(t_tile *) * (y + 1));
 	while (y--)
-	{
 		tilemap[y] = (t_tile *)malloc(sizeof(t_tile) * (x));
-		//tilemap[y][x] = (t_tile **)0;
-	//	y--;
-		//tilemap[y] = ft_calloc(sizeof(t_tile), x );
-		// tilemap[] = NULL;
-	}
 	return (tilemap);
 }
 
