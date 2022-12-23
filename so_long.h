@@ -7,7 +7,7 @@
 # include "mlx/mlx.h"
 
 // STRUCTS
-# define SIZE 32
+# define SIZE 64
 
 typedef struct s_coord
 {

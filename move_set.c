@@ -89,7 +89,6 @@ void	ft_move_right(t_mlx *init, int x, int y)
 	else if (init->map[y][x].right->type == 'C')
 	{
 		init->map[y][x].right->type = 'P';
-			ft_print_and_destroy(init, "personaggio/ReUmanoFloor.xpm", x + 1, y);
 			ft_print_and_destroy(init, "personaggio/ReUmanoCollect.xpm", x + 1, y);
 			ft_print_and_destroy(init, "personaggio/ReUmanoFloor.xpm", x + 1, y);
 		init->map[y][x].type = '0';
