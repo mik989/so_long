@@ -40,9 +40,19 @@ void	ft_freemap(t_mlx *init)
 	free(tilemap);
 }
 
-int	ft_close(t_mlx *init)
+int	ft_close_error(t_mlx *init)
 {
 	//mlx_destroy_window(init->mlx, init->win);
+	mlx_destroy_display(init->mlx);
+	free(init->mlx);
+	ft_freemap(init);
+	exit(0);
+	return (0);
+}
+
+int	ft_close(t_mlx *init)
+{
+	mlx_destroy_window(init->mlx, init->win);
 	mlx_destroy_display(init->mlx);
 	free(init->mlx);
 	ft_freemap(init);
@@ -78,33 +88,85 @@ while (y--)
 		if (init->map[0][x].type != '1')
 		{
 			ft_putstr_fd("Error! Invalid map\n", 2);
-			ft_close(init);
+			ft_close_error(init);
 		}
 		if (init->map[y][0].type != '1')
 		{
 			ft_putstr_fd("Error! Invalid map\n", 2);
-			ft_close(init);
+			ft_close_error(init);
 		}
 		if (init->map[y][init->x - 1].type != '1')
 		{
 			ft_putstr_fd("Error! Invalid map\n", 2);
-			ft_close(init);
+			ft_close_error(init);
 		}
 		if (init->map[init->y - 1][x].type != '1')
 		{
 			ft_putstr_fd("Error! Invalid map\n", 2);
-			ft_close(init);
+			ft_close_error(init);
 		}
-	/*	if (init->map[y][x].type != '1' || init->map[y][x].type != 'E' || init->map[y][x].type != 'C' || init->map[y][x].type != '0' ||init->map[y][x].type != 'P')
+		if (init->map[y][x].type != '1' && init->map[y][x].type != 'E' && init->map[y][x].type != 'C' && init->map[y][x].type != '0' && init->map[y][x].type != 'P')
 		{
 			ft_putstr_fd("Error! Invalid map\n", 2);
-			ft_close(init);
-		}*/
+			ft_close_error(init);
+		}
 	}
 	x = init->x;
 }
 return (1);
 }
+
+/*void	check_flood(t_mlx *init)
+{
+	//char c;
+	//t_coord p;
+	//c = init->flood[init->pos_flood.y][init->pos_flood.x].type;
+	init->flood[init->pos_flood.y][init->pos_flood.x].type = 'P';
+	if (init->pos_flood.y > 0 && init->flood[init->pos_flood.y - 1][init->pos_flood.x].type != '1')
+	{
+		//p.x = init->pos_flood.x;
+		init->pos_flood.y -= 1;
+		check_flood(init);
+	}
+	if (init->pos_flood.y < (init->y - 1) && init->flood[init->pos_flood.y + 1][init->pos_flood.x].type != '1')
+	{
+		//p.x = init->pos_flood.x;
+		init->pos_flood.y += 1;
+		check_flood(init);
+	}
+	if (init->pos_flood.x < (init->x - 1) && init->flood[init->pos_flood.y][init->pos_flood.x + 1].type != '1')
+	{
+		init->pos_flood.x += 1;
+		//p.y = init->pos_flood.y;
+		check_flood(init);
+	}
+	if (init->pos_flood.x > 0 && init->flood[init->pos_flood.y][init->pos_flood.x - 1].type != '1')
+	{
+		init->pos_flood.x -= 1;
+		//p.y = init->pos_flood.y;
+		check_flood(init);
+	}
+}
+
+void	check_valid(t_mlx *init)
+{
+	check_flood(init);
+	int x = init->x;
+	int y = init->y;
+	while (y--)
+	{
+		while(x--)
+		{
+			if (init->flood[y][x].type == 'E' && init->flood[y][x].type == 'C')
+			{
+				ft_putstr_fd("Error! Invalid map\n", 2);
+				//ft_freemap(init->flood);
+				ft_close_error(init);
+			}
+		}
+		x = init->x;
+	}
+}*/
 int	main(void)
 {
 	t_mlx	init;
@@ -118,8 +180,11 @@ int	main(void)
 	array_map = ft_get_map(path_ber);
 	init.map = ft_tilemap_alloc(array_map, &init);
 	ft_init_map(init, array_map);
+	//init.flood = init.map;
+	//init.pos_flood = init.kingo;
 	if (check_border(&init) == 1)
-		init.win = mlx_new_window(init.mlx, (init.x * SIZE) + 40, (init.y * SIZE) + 40, "so_long");
+		//check_valid(&init);
+	init.win = mlx_new_window(init.mlx, (init.x * SIZE) + 40, (init.y * SIZE) + 40, "so_long");
 	ft_map_render(&init, init.map, init.x, init.y);
 	mlx_hook(init.win, 17, 0, ft_close, (void *)0);
 	//ft_map_render(&init, init.map, init.x, init.y);

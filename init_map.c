@@ -109,6 +109,11 @@ void	ft_init_map(t_mlx init, char *map)
 		init.map[y][x].position.y = ybuff;
 		init.map[y][x].type = map[i];
 		init.map[y][x].ori_type = map[i];
+		if (map[i] == 'P')
+		{
+			init.kingo.x = x;
+			init.kingo.y = y;
+		}
 		if (x > 0)
 			init.map[y][x].left = &init.map[y][x - 1];
 		if (y > 0)
