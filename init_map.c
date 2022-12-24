@@ -9,11 +9,46 @@ void	ft_error_map(char *error, t_mlx *init, char *map)
 	exit (0);
 }
 
+void	ft_reset_map(t_mlx *init)
+{
+	int	x;
+	int	y;
+
+	x = init->x;
+	y = init->y;
+	while (y--)
+	{
+		while(x--)
+		{
+			init->map[y][x].type = init->map[y][x].ori_type;
+		}
+		x = init->x;
+	}
+	
+}
+
+void	check_map_logic(t_mlx *init, char *map, int f, int len)
+{
+	if (f == 0)
+	{
+		init->check.line_2 = len;
+		if (init->check.line_2 != init->check.line_1)
+			ft_error_map("Error! Invalid map\n", init, map);
+		len = 0;
+	}
+	else if (f == 1)
+	{
+		init->check.line_1 = len;
+		f = 0;
+		len = 0;
+	}
+}
+
 int	check_map(char *map, t_mlx *init)
 {
 	int	i;
-	int f;
-	int len;
+	int	f;
+	int	len;
 
 	len = 0;
 	f = 1;
@@ -25,29 +60,17 @@ int	check_map(char *map, t_mlx *init)
 			i++;
 			len++;
 		}
-		if (f == 0)
-		{
-			init->check.line_2 = len;
-			if (init->check.line_2 != init->check.line_1)
-				ft_error_map("Error! Invalid map\n", init, map);
-			len = 0;
-		}
-		else if (f == 1)
-		{
-			init->check.line_1 = len;
-			f = 0;
-			len = 0;
-		}
+		check_map_logic(init, map, f, len);
 		if (map[i] == '\n' && map[i + 1] == '\0')
-		{
 			ft_error_map("Error! Invalid map\n", init, map);
-		}
 		i++;
 	}
-	if ((init->check.exit > 1 || init->check.player > 1) || (init->check.exit == 0 || init->check.player == 0))
+	if ((init->check.exit > 1 || init->check.player > 1)
+		|| (init->check.exit == 0 || init->check.player == 0))
 		ft_error_map("Error! Invalid map\n", init, map);
-	return (1);	
+	return (1);
 }
+
 t_tile	**ft_tilemap_alloc(char *map, t_mlx *init)
 {
 	t_tile	**tilemap;
@@ -76,7 +99,6 @@ t_tile	**ft_tilemap_alloc(char *map, t_mlx *init)
 	}
 	init->x = x - 1;
 	init->y = y;
-
 	if (check_map(map, init) == 1)
 		tilemap = (t_tile **)malloc(sizeof(t_tile *) * (y + 1));
 	while (y--)
@@ -84,7 +106,7 @@ t_tile	**ft_tilemap_alloc(char *map, t_mlx *init)
 	return (tilemap);
 }
 
-void	ft_init_map(t_mlx init, char *map)
+void	ft_init_map(t_mlx *init, char *map)
 {
 	int	x;
 	int	y;
@@ -107,25 +129,25 @@ void	ft_init_map(t_mlx init, char *map)
 			x = 0;
 			i++;
 		}
-		if (!init.map[y])
+		if (!init->map[y])
 			break ;
-		init.map[y][x].position.x = xbuff;
-		init.map[y][x].position.y = ybuff;
-		init.map[y][x].type = map[i];
-		init.map[y][x].ori_type = map[i];
-		if (map[i] == 'P')
+		init->map[y][x].position.x = xbuff;
+		init->map[y][x].position.y = ybuff;
+		init->map[y][x].type = map[i];
+		init->map[y][x].ori_type = map[i];
+		if (init->map[y][x].type == 'P')
 		{
-			init.kingo.x = x;
-			init.kingo.y = y;
+			init->kingo.x = x;
+			init->kingo.y = y;
 		}
 		if (x > 0)
-			init.map[y][x].left = &init.map[y][x - 1];
+			init->map[y][x].left = &init->map[y][x - 1];
 		if (y > 0)
-			init.map[y][x].up = &init.map[y - 1][x];
-		if (x < init.x)
-			init.map[y][x].right = &init.map[y][x + 1];
-		if (y < init.y)
-			init.map[y][x].down = &init.map[y + 1][x];
+			init->map[y][x].up = &init->map[y - 1][x];
+		if (x < init->x -  1)
+			init->map[y][x].right = &init->map[y][x + 1];
+		if (y < init->y - 1)
+			init->map[y][x].down = &init->map[y + 1][x];
 		xbuff += SIZE;
 		x++;
 		i++;

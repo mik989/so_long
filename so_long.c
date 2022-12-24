@@ -30,9 +30,11 @@ se ci sono più spazi alla fine il programma va in core dump V Risolto*/
 void	ft_freemap(t_mlx *init)
 {
 	t_tile	**tilemap;
-
+	int	y; 
+	
 	tilemap = init->map;
-	while (*init->map != NULL)
+	y = init->y;
+	while (y--)
 	{
 		free(*init->map);
 		init->map++;
@@ -120,26 +122,26 @@ void	check_flood(t_mlx *init, t_coord origin)
 {
 	t_coord p;
 
-	init->map[origin.y][origin.x].ori_type = 'P';
-	if (origin.y > 0 && init->map[origin.y - 1][origin.x].ori_type != '1' && init->map[origin.y - 1][origin.x].ori_type != 'P')
+	init->map[origin.y][origin.x].type = 'P';
+	if (origin.y > 0 && init->map[origin.y - 1][origin.x].type != '1' && init->map[origin.y - 1][origin.x].type != 'P')
 	{
 		p.x = origin.x;
 		p.y = origin.y - 1;
 		check_flood(init, p);
 	}
-	if (origin.y < (init->y - 1) && init->map[origin.y + 1][origin.x].ori_type != '1' && init->map[origin.y + 1][origin.x].ori_type != 'P')
+	if (origin.y < (init->y - 1) && init->map[origin.y + 1][origin.x].type != '1' && init->map[origin.y + 1][origin.x].type != 'P')
 	{
 		p.x = origin.x;
 		p.y = origin.y + 1;
 		check_flood(init, p);
 	}
-	if (origin.x < (init->x - 1) && init->map[origin.y][origin.x + 1].ori_type != '1' && init->map[origin.y][origin.x + 1].ori_type != 'P')
+	if (origin.x < (init->x - 1) && init->map[origin.y][origin.x + 1].type != '1' && init->map[origin.y][origin.x + 1].type != 'P')
 	{
 		p.x = origin.x + 1;
 		p.y = origin.y;
 		check_flood(init, p);
 	}
-	if (origin.x > 0 && init->map[origin.y][origin.x - 1].ori_type != '1' && init->map[origin.y][origin.x - 1].ori_type != 'P')
+	if (origin.x > 0 && init->map[origin.y][origin.x - 1].type != '1' && init->map[origin.y][origin.x - 1].type != 'P')
 	{
 		p.x = origin.x - 1;
 		p.y = origin.y;
@@ -156,7 +158,7 @@ void	check_valid(t_mlx *init)
 	{
 		while(x--)
 		{
-			if (init->map[y][x].ori_type != 'P' && init->map[y][x].ori_type != '1')
+			if (init->map[y][x].type != 'P' && init->map[y][x].type != '1' && init->map[y][x].type != '0')
 			{
 				ft_putstr_fd("Error! Invalid map\n", 2);
 				ft_close_error(init);
@@ -164,6 +166,7 @@ void	check_valid(t_mlx *init)
 		}
 		x = init->x;
 	}
+	ft_reset_map(init);
 }
 int	main(void)
 {
@@ -177,9 +180,7 @@ int	main(void)
 	path_ber = "test.ber";
 	array_map = ft_get_map(path_ber);
 	init.map = ft_tilemap_alloc(array_map, &init);
-	ft_init_map(init, array_map);
-	init.kingo.x = 1;
-	init.kingo.y = 1;
+	ft_init_map(&init, array_map);
 	if (check_border(&init) == 1)
 		check_valid(&init);
 	init.win = mlx_new_window(init.mlx, (init.x * SIZE) + 40, (init.y * SIZE) + 40, "so_long");
