@@ -46,7 +46,11 @@ void	ft_map_render(t_mlx *init, t_tile **tile_map, int x, int y)
 			else if (tile_map[y][x].type == '0')
 				ft_print_and_destroy(init, "sprites/wall/floor.xpm", x, y);
 			else if (tile_map[y][x].type == 'P')
+			{
 				ft_print_and_destroy(init, "sprites/kingo/kingoF.xpm", x, y);
+				init->kingo.x = x;
+				init->kingo.y = y;
+			}
 			else if (tile_map[y][x].type == 'E')
 			{
 				ft_print_and_destroy(init, "sprites/door/door_c.xpm", x, y);

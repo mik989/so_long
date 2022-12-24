@@ -44,7 +44,6 @@ void	ft_freemap(t_mlx *init)
 
 int	ft_close_error(t_mlx *init)
 {
-	//mlx_destroy_window(init->mlx, init->win);
 	mlx_destroy_display(init->mlx);
 	free(init->mlx);
 	ft_freemap(init);

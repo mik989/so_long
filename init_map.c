@@ -9,6 +9,14 @@ void	ft_error_map(char *error, t_mlx *init, char *map)
 	exit (0);
 }
 
+void	ft_restart(t_mlx *init)
+{
+	ft_reset_map(init);
+	init->moves = 0;
+	init->collectible = init->check.col;
+	ft_map_render(init, init->map, init->x, init->y);
+
+}
 void	ft_reset_map(t_mlx *init)
 {
 	int	x;
@@ -99,6 +107,7 @@ t_tile	**ft_tilemap_alloc(char *map, t_mlx *init)
 	}
 	init->x = x - 1;
 	init->y = y;
+	init->check.col =init->collectible;
 	if (check_map(map, init) == 1)
 		tilemap = (t_tile **)malloc(sizeof(t_tile *) * (y + 1));
 	while (y--)

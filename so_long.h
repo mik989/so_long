@@ -25,6 +25,7 @@ typedef struct s_check
 	int					player;
 	int					line_1;
 	int					line_2;
+	int					col;
 
 }						t_check;
 
@@ -62,5 +63,6 @@ int		key_input(int keycode, t_mlx *init);
 void	ft_counter(t_mlx *init);
 void	ft_print_and_destroy(t_mlx *init, char *path, int x, int y);
 void	ft_reset_map(t_mlx *init);
+void	ft_restart(t_mlx *init);
 
 #endif
