@@ -116,57 +116,55 @@ while (y--)
 return (1);
 }
 
-/*void	check_flood(t_mlx *init)
+void	check_flood(t_mlx *init, t_coord origin)
 {
-	//char c;
-	//t_coord p;
-	//c = init->flood[init->pos_flood.y][init->pos_flood.x].type;
-	init->flood[init->pos_flood.y][init->pos_flood.x].type = 'P';
-	if (init->pos_flood.y > 0 && init->flood[init->pos_flood.y - 1][init->pos_flood.x].type != '1')
+	t_coord p;
+
+	init->map[origin.y][origin.x].ori_type = 'P';
+	if (origin.y > 0 && init->map[origin.y - 1][origin.x].ori_type != '1' && init->map[origin.y - 1][origin.x].ori_type != 'P')
 	{
-		//p.x = init->pos_flood.x;
-		init->pos_flood.y -= 1;
-		check_flood(init);
+		p.x = origin.x;
+		p.y = origin.y - 1;
+		check_flood(init, p);
 	}
-	if (init->pos_flood.y < (init->y - 1) && init->flood[init->pos_flood.y + 1][init->pos_flood.x].type != '1')
+	if (origin.y < (init->y - 1) && init->map[origin.y + 1][origin.x].ori_type != '1' && init->map[origin.y + 1][origin.x].ori_type != 'P')
 	{
-		//p.x = init->pos_flood.x;
-		init->pos_flood.y += 1;
-		check_flood(init);
+		p.x = origin.x;
+		p.y = origin.y + 1;
+		check_flood(init, p);
 	}
-	if (init->pos_flood.x < (init->x - 1) && init->flood[init->pos_flood.y][init->pos_flood.x + 1].type != '1')
+	if (origin.x < (init->x - 1) && init->map[origin.y][origin.x + 1].ori_type != '1' && init->map[origin.y][origin.x + 1].ori_type != 'P')
 	{
-		init->pos_flood.x += 1;
-		//p.y = init->pos_flood.y;
-		check_flood(init);
+		p.x = origin.x + 1;
+		p.y = origin.y;
+		check_flood(init, p);
 	}
-	if (init->pos_flood.x > 0 && init->flood[init->pos_flood.y][init->pos_flood.x - 1].type != '1')
+	if (origin.x > 0 && init->map[origin.y][origin.x - 1].ori_type != '1' && init->map[origin.y][origin.x - 1].ori_type != 'P')
 	{
-		init->pos_flood.x -= 1;
-		//p.y = init->pos_flood.y;
-		check_flood(init);
+		p.x = origin.x - 1;
+		p.y = origin.y;
+		check_flood(init, p);
 	}
 }
 
 void	check_valid(t_mlx *init)
 {
-	check_flood(init);
+	check_flood(init, init->kingo);
 	int x = init->x;
 	int y = init->y;
 	while (y--)
 	{
 		while(x--)
 		{
-			if (init->flood[y][x].type == 'E' && init->flood[y][x].type == 'C')
+			if (init->map[y][x].ori_type != 'P' && init->map[y][x].ori_type != '1')
 			{
 				ft_putstr_fd("Error! Invalid map\n", 2);
-				//ft_freemap(init->flood);
 				ft_close_error(init);
 			}
 		}
 		x = init->x;
 	}
-}*/
+}
 int	main(void)
 {
 	t_mlx	init;
@@ -180,14 +178,13 @@ int	main(void)
 	array_map = ft_get_map(path_ber);
 	init.map = ft_tilemap_alloc(array_map, &init);
 	ft_init_map(init, array_map);
-	//init.flood = init.map;
-	//init.pos_flood = init.kingo;
+	init.kingo.x = 1;
+	init.kingo.y = 1;
 	if (check_border(&init) == 1)
-		//check_valid(&init);
+		check_valid(&init);
 	init.win = mlx_new_window(init.mlx, (init.x * SIZE) + 40, (init.y * SIZE) + 40, "so_long");
 	ft_map_render(&init, init.map, init.x, init.y);
 	mlx_hook(init.win, 17, 0, ft_close, (void *)0);
-	//ft_map_render(&init, init.map, init.x, init.y);
 	ft_counter(&init);
 	mlx_key_hook(init.win, key_input, &init);
 	mlx_loop(init.mlx);

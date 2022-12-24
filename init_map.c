@@ -38,6 +38,10 @@ int	check_map(char *map, t_mlx *init)
 			f = 0;
 			len = 0;
 		}
+		if (map[i] == '\n' && map[i + 1] == '\0')
+		{
+			ft_error_map("Error! Invalid map\n", init, map);
+		}
 		i++;
 	}
 	if ((init->check.exit > 1 || init->check.player > 1) || (init->check.exit == 0 || init->check.player == 0))

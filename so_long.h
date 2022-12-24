@@ -44,11 +44,9 @@ typedef struct struct_mlx
 	void				*mlx;
 	void				*win;
 	t_tile				**map;
-	t_tile				**flood;
 	void				*img;
 	t_check				check;
 	t_coord				kingo;
-	t_coord				pos_flood;
 	t_coord				door;
 	int					collectible;
 	int					moves;
