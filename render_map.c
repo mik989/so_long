@@ -58,7 +58,7 @@ void	ft_map_render(t_mlx *init, t_tile **tile_map, int x, int y)
 				init->door.y = y;
 			}
 			else if (tile_map[y][x].type == 'C')
-				ft_print_and_destroy(init, "sprites/col/key_star.xpm", x, y);
+				ft_print_and_destroy(init, init->collect_img.current_img, x, y);
 		}
 	}
 }

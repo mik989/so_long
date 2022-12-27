@@ -14,6 +14,15 @@
 # define MLX_SYNC_WIN_FLUSH_CMD		2
 # define MLX_SYNC_WIN_CMD_COMPLETED	3
 
+
+typedef struct struct_c_img_anim
+{
+	void	*current_img;
+	int		anim_frames;
+	void	*img_0;
+	void	*img_1;
+}	t_c_img_anim;
+
 typedef struct s_coord
 {
 	int					x;
@@ -48,6 +57,7 @@ typedef struct struct_mlx
 	void				*win;
 	t_tile				**map;
 	void				*img;
+	t_c_img_anim		collect_img;
 	t_check				check;
 	t_coord				kingo;
 	t_coord				door;
@@ -57,6 +67,7 @@ typedef struct struct_mlx
 	int					y;
 }						t_mlx;
 
+int		animazioni(t_mlx *init);
 void	ft_map_render(t_mlx *init, t_tile **tile_map, int x, int y);
 void	ft_init_map(t_mlx *init, char *map, int x, int y);
 t_tile	**ft_tilemap_alloc(char *map, t_mlx *init);

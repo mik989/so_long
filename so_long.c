@@ -50,6 +50,10 @@ void	start(t_mlx *init, int ac, char **av)
 	if (ac == 2)
 	{
 		init->collectible = 0;
+		init->collect_img.anim_frames = 25;		
+		init->collect_img.img_0 = "sprites/col/key_star.xpm";
+		init->collect_img.img_1 = "sprites/col/key.xpm";	
+		init->collect_img.current_img = "sprites/col/key.xpm";	
 		init->moves = 0;
 		array_map = ft_get_map(av[1]);
 		init->map = ft_tilemap_alloc(array_map, init);
@@ -69,7 +73,6 @@ void	start(t_mlx *init, int ac, char **av)
 int	main(int ac, char **av)
 {
 	t_mlx	init;
-
 	start(&init, ac, av);
 	init.mlx = mlx_init();
 	init.win = mlx_new_window(init.mlx, (init.x * SIZE) + BOR_X,
@@ -78,6 +81,7 @@ int	main(int ac, char **av)
 	mlx_hook(init.win, 17, 0, ft_close, (void *)0);
 	ft_counter(&init);
 	mlx_key_hook(init.win, key_input, &init);
+	mlx_loop_hook(init.mlx, animazioni, (void *)&init);
 	mlx_loop(init.mlx);
 	return (0);
 }
