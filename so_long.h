@@ -56,7 +56,7 @@ typedef struct struct_mlx
 }						t_mlx;
 
 void	ft_map_render(t_mlx *init, t_tile **tile_map, int x, int y);
-void	ft_init_map(t_mlx *init, char *map);
+void	ft_init_map(t_mlx *init, char *map, int x, int y);
 t_tile	**ft_tilemap_alloc(char *map, t_mlx *init);
 int		ft_close(t_mlx *init);
 int		key_input(int keycode, t_mlx *init);
@@ -64,5 +64,14 @@ void	ft_counter(t_mlx *init);
 void	ft_print_and_destroy(t_mlx *init, char *path, int x, int y);
 void	ft_reset_map(t_mlx *init);
 void	ft_restart(t_mlx *init);
+void	ft_error_map(char *error, char *map);
+void	ft_error_border(t_mlx *init);
+int		ft_close_error(t_mlx *init);
+void	ft_freemap(t_mlx *init);
+void	check_border(t_mlx *init);
+void	check_flood(t_mlx *init, t_coord origin);
+void	check_valid(t_mlx *init);
+int		check_map(char *map, t_mlx *init);
+void	check_map_logic(t_mlx *init, char *map, int f, int len);
 
 #endif
