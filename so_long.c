@@ -73,10 +73,10 @@ int	main(int ac, char **av)
 	init.win = mlx_new_window(init.mlx, (init.x * SIZE) + BOR_X,
 			(init.y * SIZE) + BOR_Y, "so_long");
 	ft_map_render(&init, init.map, init.x, init.y);
-	mlx_hook(init.win, 17, 0, ft_close, (void *)0);
+	mlx_hook(init.win, 17, 0, ft_close, &init);
 	ft_counter(&init);
 	mlx_key_hook(init.win, key_input, &init);
-	mlx_loop_hook(init.mlx, animazioni, (void *)&init);
+	mlx_loop_hook(init.mlx, animazioni, &init);
 	mlx_loop(init.mlx);
 	return (0);
 }

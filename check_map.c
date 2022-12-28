@@ -21,7 +21,7 @@ void	check_border(t_mlx *init)
 				ft_error_border(init);
 			if (init->map[y][x].type != '1' && init->map[y][x].type != 'E'
 				&& init->map[y][x].type != 'C' && init->map[y][x].type != '0'
-				&& init->map[y][x].type != 'P')
+				&& init->map[y][x].type != 'P' && init->map[y][x].type != 'F')
 				ft_error_border(init);
 		}
 		x = init->x;

@@ -47,9 +47,15 @@ void	ft_map_render(t_mlx *init, t_tile **tile_map, int x, int y)
 				ft_print_and_destroy(init, "sprites/wall/floor.xpm", x, y);
 			else if (tile_map[y][x].type == 'P')
 			{
-				ft_print_and_destroy(init, "sprites/kingo/kingoF.xpm", x, y);
+				ft_print_and_destroy(init, init->kingo_img.current_img, x, y);
 				init->kingo.x = x;
 				init->kingo.y = y;
+			}
+			else if (tile_map[y][x].type == 'F')
+			{
+				ft_print_and_destroy(init, init->enemy_img.current_img, x, y);
+				init->enemy.x = x;
+				init->enemy.y = y;
 			}
 			else if (tile_map[y][x].type == 'E')
 			{

@@ -62,7 +62,7 @@ int	check_map(char *map, t_mlx *init)
 		i++;
 	}
 	if ((init->check.exit > 1 || init->check.player > 1)
-		|| (init->check.exit == 0 || init->check.player == 0))
+		|| (init->check.exit == 0 || init->check.player == 0 || init->check.col == 0))
 		ft_error_map("Error! Invalid map\n", map);
 	return (1);
 }
