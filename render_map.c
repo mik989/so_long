@@ -53,7 +53,7 @@ void	ft_map_render(t_mlx *init, t_tile **tile_map, int x, int y)
 			}
 			else if (tile_map[y][x].type == 'E')
 			{
-				ft_print_and_destroy(init, "sprites/door/door_c.xpm", x, y);
+				ft_print_and_destroy(init, init->door_img.current_img, x, y);
 				init->door.x = x;
 				init->door.y = y;
 			}

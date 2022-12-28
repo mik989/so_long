@@ -20,9 +20,7 @@ void	ft_move_up(t_mlx *init, int x, int y)
 		ft_print_and_destroy(init, "sprites/wall/floor.xpm", x, y);
 		init->moves += 1;
 		init->collectible -= 1;
-		if (init->collectible == 0)
-			ft_print_and_destroy(init, "sprites/door/door_o.xpm",
-				init->door.x, init->door.y);
+		
 	}
 	else if (init->map[y][x].up->type == 'E' && init->collectible == 0)
 		ft_close(init);
@@ -49,9 +47,7 @@ void	ft_move_down(t_mlx *init, int x, int y)
 		ft_print_and_destroy(init, "sprites/wall/floor.xpm", x, y);
 		init->moves += 1;
 		init->collectible -= 1;
-		if (init->collectible == 0)
-			ft_print_and_destroy(init, "sprites/door/door_o.xpm",
-				init->door.x, init->door.y);
+		
 	}
 	else if (init->map[y][x].down->type == 'E' && init->collectible == 0)
 		ft_close(init);
@@ -78,9 +74,7 @@ void	ft_move_left(t_mlx *init, int x, int y)
 		ft_print_and_destroy(init, "sprites/wall/floor.xpm", x, y);
 		init->moves += 1;
 		init->collectible -= 1;
-		if (init->collectible == 0)
-			ft_print_and_destroy(init, "sprites/door/door_o.xpm",
-				init->door.x, init->door.y);
+		
 	}
 	else if (init->map[y][x].left->type == 'E' && init->collectible == 0)
 		ft_close(init);
@@ -107,9 +101,6 @@ void	ft_move_right(t_mlx *init, int x, int y)
 		ft_print_and_destroy(init, "sprites/wall/floor.xpm", x, y);
 		init->moves = init->moves + 1;
 		init->collectible -= 1;
-		if (init->collectible == 0)
-			ft_print_and_destroy(init, "sprites/door/door_o.xpm",
-				init->door.x, init->door.y);
 	}
 	else if (init->map[y][x].right->type == 'E' && init->collectible == 0)
 		ft_close(init);

@@ -49,12 +49,7 @@ void	start(t_mlx *init, int ac, char **av)
 
 	if (ac == 2)
 	{
-		init->collectible = 0;
-		init->collect_img.anim_frames = 25;		
-		init->collect_img.img_0 = "sprites/col/key_star.xpm";
-		init->collect_img.img_1 = "sprites/col/key.xpm";	
-		init->collect_img.current_img = "sprites/col/key.xpm";	
-		init->moves = 0;
+		ft_init_img(init);		
 		array_map = ft_get_map(av[1]);
 		init->map = ft_tilemap_alloc(array_map, init);
 		ft_init_map(init, array_map, 0, 0);
