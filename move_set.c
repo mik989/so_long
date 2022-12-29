@@ -12,7 +12,7 @@ void    ft_enemy_mov(t_mlx *init)
         {
             init->map[y][x].left->type = 'F';
             ft_print_and_destroy(init, init->enemy_img.current_img, x - 1, y);
-            init->enemy.x = x - 1;
+            init->enemy.x = init->kingo.x + 1;
             init->map[y][x].type = '0';
             ft_print_and_destroy(init, "sprites/wall/floor.xpm", x, y);
         }
@@ -20,7 +20,7 @@ void    ft_enemy_mov(t_mlx *init)
         {
             init->map[y][x].right->type = 'F';
             ft_print_and_destroy(init, init->enemy_img.current_img, x + 1, y);
-            init->enemy.x = x + 1;
+            init->enemy.x = init->kingo.x - 1;
             init->map[y][x].type = '0';
             ft_print_and_destroy(init, "sprites/wall/floor.xpm", x, y);
         }
@@ -31,7 +31,7 @@ void    ft_enemy_mov(t_mlx *init)
         {
             init->map[y][x].up->type = 'F';
             ft_print_and_destroy(init, init->enemy_img.current_img, x, y - 1);
-            init->enemy.y = y - 1;
+            init->enemy.y = init->kingo.y + 1;
             init->map[y][x].type = '0';
             ft_print_and_destroy(init, "sprites/wall/floor.xpm", x, y);
         }
@@ -39,7 +39,7 @@ void    ft_enemy_mov(t_mlx *init)
         {
             init->map[y][x].down->type = 'F';
             ft_print_and_destroy(init, init->enemy_img.current_img, x, y + 1);
-            init->enemy.y = y + 1;
+            init->enemy.y = init->kingo.y - 1;
             init->map[y][x].type = '0';
             ft_print_and_destroy(init, "sprites/wall/floor.xpm", x, y);
         }
