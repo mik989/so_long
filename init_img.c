@@ -19,12 +19,10 @@ void    ft_init_exit(t_mlx *init)
 }
 void    ft_init_enemy(t_mlx *init)
 {
-    init->enemy_img.anim_frames = 2;	
+    init->enemy_img.anim_frames = 5;	
     init->enemy_img.current_img = "sprites/enemy/en_0.xpm";
 	init->enemy_img.img_1 = "sprites/enemy/en_1.xpm";	
-	init->enemy_img.img_2 = "sprites/enemy/en_2.xpm";	
-    init->enemy_img.img_3 = "sprites/enemy/en_3.xpm";
-    init->enemy_img.img_4 = "sprites/enemy/en_4.xpm";	
+	init->enemy_img.img_2 = "sprites/enemy/en_2.xpm";		
     init->enemy_img.img_5 = "sprites/enemy/en_5.xpm";	
     init->enemy_img.img_6 = "sprites/enemy/en_6.xpm";	
     init->enemy_img.img_7 = "sprites/enemy/en_7.xpm";
@@ -38,12 +36,10 @@ void    ft_init_kingo(t_mlx *init)
 {
         init->collectible = 0;
         init->moves = 0;
-		init->kingo_img.anim_frames = 2;	
+		init->kingo_img.anim_frames = 5;	
         init->kingo_img.current_img = "sprites/kingo/kingo_0.xpm";	
 		init->kingo_img.img_1 = "sprites/kingo/kingo_1.xpm";	
-		init->kingo_img.img_2 = "sprites/kingo/kingo_2.xpm";	
-        init->kingo_img.img_3 = "sprites/kingo/kingo_3.xpm";	
-        init->kingo_img.img_4 = "sprites/kingo/kingo_4.xpm";	
+		init->kingo_img.img_2 = "sprites/kingo/kingo_2.xpm";		
         init->kingo_img.img_5 = "sprites/kingo/kingo_5.xpm";	
         init->kingo_img.img_6 = "sprites/kingo/kingo_6.xpm";	
         init->kingo_img.img_7 = "sprites/kingo/kingo_7.xpm";	

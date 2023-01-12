@@ -49,7 +49,7 @@ void	start(t_mlx *init, int ac, char **av)
 
 	if (ac == 2)
 	{
-		ft_init_img(init);		
+		ft_init_img(init);
 		array_map = ft_get_map(av[1]);
 		init->map = ft_tilemap_alloc(array_map, init);
 		ft_init_map(init, array_map, 0, 0);
@@ -68,6 +68,7 @@ void	start(t_mlx *init, int ac, char **av)
 int	main(int ac, char **av)
 {
 	t_mlx	init;
+
 	start(&init, ac, av);
 	init.mlx = mlx_init();
 	init.win = mlx_new_window(init.mlx, (init.x * SIZE) + BOR_X,

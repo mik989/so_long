@@ -17,6 +17,7 @@ static void	collect_animation(t_c_img_anim *img)
 	}
 	frame += 1;
 }
+
 static void	enemy_animation(t_enemy_anim *img)
 {
 	static int	frame;
@@ -28,20 +29,16 @@ static void	enemy_animation(t_enemy_anim *img)
 	else if (frame == img->anim_frames * 2)
 		img->current_img = img->img_2;
 	else if (frame == img->anim_frames * 3)
-		img->current_img = img->img_3;
-	else if (frame == img->anim_frames * 4)
-		img->current_img = img->img_4;
-	else if (frame == img->anim_frames * 5)
 		img->current_img = img->img_5;
-	else if (frame == img->anim_frames * 6)
+	else if (frame == img->anim_frames * 4)
 		img->current_img = img->img_6;
-	else if (frame == img->anim_frames * 7)
+	else if (frame == img->anim_frames * 5)
 		img->current_img = img->img_7;
-	else if (frame == img->anim_frames * 8)
+	else if (frame == img->anim_frames * 6)
 		img->current_img = img->img_8;
-	else if (frame == img->anim_frames * 9)
+	else if (frame == img->anim_frames * 7)
 		img->current_img = img->img_9;
-	else if (frame >= img->anim_frames * 10)
+	else if (frame >= img->anim_frames * 8)
 	{
 		img->current_img = img->img_10;
 		frame = 0;
@@ -60,20 +57,16 @@ static void	kingo_animation(t_kingo_anim *img)
 	else if (frame == img->anim_frames * 2)
 		img->current_img = img->img_2;
 	else if (frame == img->anim_frames * 3)
-		img->current_img = img->img_3;
-	else if (frame == img->anim_frames * 4)
-		img->current_img = img->img_4;
-	else if (frame == img->anim_frames * 5)
 		img->current_img = img->img_5;
-	else if (frame == img->anim_frames * 6)
+	else if (frame == img->anim_frames * 4)
 		img->current_img = img->img_6;
-	else if (frame == img->anim_frames * 7)
+	else if (frame == img->anim_frames * 5)
 		img->current_img = img->img_7;
-	else if (frame == img->anim_frames * 8)
+	else if (frame == img->anim_frames * 6)
 		img->current_img = img->img_8;
-	else if (frame == img->anim_frames * 9)
+	else if (frame == img->anim_frames * 7)
 		img->current_img = img->img_9;
-	else if (frame >= img->anim_frames * 10)
+	else if (frame >= img->anim_frames * 8)
 	{
 		img->current_img = img->img_10;
 		frame = 0;
