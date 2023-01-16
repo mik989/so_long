@@ -49,7 +49,7 @@ void	start(t_mlx *init, int ac, char **av)
 
 	if (ac == 2)
 	{
-		ft_init_img(init);
+		init->map = 0;
 		array_map = ft_get_map(av[1]);
 		init->map = ft_tilemap_alloc(array_map, init);
 		ft_init_map(init, array_map, 0, 0);
@@ -77,7 +77,6 @@ int	main(int ac, char **av)
 	mlx_hook(init.win, 17, 0, ft_close, &init);
 	ft_counter(&init);
 	mlx_key_hook(init.win, key_input, &init);
-	mlx_loop_hook(init.mlx, animazioni, &init);
 	mlx_loop(init.mlx);
 	return (0);
 }

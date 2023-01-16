@@ -11,10 +11,6 @@ void	ft_move_up(t_mlx *init, int x, int y)
 	}
 	else if (init->map[y][x].up->type == 'E' && init->collectible == 0)
 		ft_close(init);
-	else if (init->map[y][x].up->type == 'F')
-		ft_close(init);
-	if (init->check.enemy > 0)
-		ft_enemy_mov(init);
 	return ;
 }
 
@@ -29,10 +25,6 @@ void	ft_move_down(t_mlx *init, int x, int y)
 	}
 	else if (init->map[y][x].down->type == 'E' && init->collectible == 0)
 		ft_close(init);
-	else if (init->map[y][x].down->type == 'F')
-		ft_close(init);
-	if (init->check.enemy > 0)
-		ft_enemy_mov(init);
 	return ;
 }
 
@@ -47,10 +39,6 @@ void	ft_move_left(t_mlx *init, int x, int y)
 	}
 	else if (init->map[y][x].left->type == 'E' && init->collectible == 0)
 		ft_close(init);
-	else if (init->map[y][x].left->type == 'F')
-		ft_close(init);
-	if (init->check.enemy > 0)
-		ft_enemy_mov(init);
 	return ;
 }
 
@@ -65,10 +53,6 @@ void	ft_move_right(t_mlx *init, int x, int y)
 	}
 	else if (init->map[y][x].right->type == 'E' && init->collectible == 0)
 		ft_close(init);
-	else if (init->map[y][x].right->type == 'F')
-		ft_close(init);
-	if (init->check.enemy > 0)
-		ft_enemy_mov(init);
 	return ;
 }
 
@@ -76,7 +60,7 @@ int	key_input(int keycode, t_mlx *init)
 {
 	int	x;
 	int	y;
-//aggiungere animazione collexionabile ex=1
+
 	x = init->kingo.x;
 	y = init->kingo.y;
 	if (keycode == 65307)
@@ -89,8 +73,8 @@ int	key_input(int keycode, t_mlx *init)
 		ft_left(init, x, y);
 	else if (keycode == 65363 || keycode == 100)
 		ft_right(init, x, y);
-	else if (keycode == 114)
-		ft_restart(init);
+	if (init->collectible == 0)
+		ft_print_and_destroy(init, "sprites/door/door_o.xpm", init->door.x, init->door.y);
 	ft_key_end_logic(init);
 	return (0);
 }

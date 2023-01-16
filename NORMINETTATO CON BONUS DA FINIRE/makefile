@@ -24,25 +24,23 @@ SRCS 	=	src/so_long.c \
 			src/error.c \
 			src/free_close.c \
 			src/check_map.c \
-			src/animazioni.c \
-			src/init_img.c \
-			src/enemy_movement.c \
 			src/move_logic.c \
 			src/key_input_logic.c
 			
-SRCS_B 	=	src_bonus/so_long.c \
-			src_bonus/render_map.c \
-			src_bonus/init_map.c \
-			src_bonus/move_set.c \
-			src_bonus/utils.c \
-			src_bonus/error.c \
-			src_bonus/free_close.c \
-			src_bonus/check_map.c \
-			src_bonus/animazioni.c \
-			src_bonus/init_img.c \
-			src_bonus/enemy_movement.c \
-			src_bonus/move_logic.c \
-			src_bonus/key_input_logic.c
+SRCS_B 	=	src_bonus/so_long_bonus.c \
+			src_bonus/render_map_bonus.c \
+			src_bonus/init_map_bonus.c \
+			src_bonus/move_set_bonus.c \
+			src_bonus/utils_bonus.c \
+			src_bonus/error_bonus.c \
+			src_bonus/free_close_bonus.c \
+			src_bonus/check_map_bonus.c \
+			src_bonus/animazioni_bonus.c \
+			src_bonus/init_img_bonus.c \
+			src_bonus/enemy_movement_bonus.c \
+			src_bonus/move_logic_bonus.c \
+			src_bonus/key_input_logic_bonus.c \
+			src_bonus/renderless_bonus.c
 
 NAME		= so_long
 NAME_B		= so_long_bonus

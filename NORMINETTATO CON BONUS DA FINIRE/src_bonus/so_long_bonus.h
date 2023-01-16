@@ -141,5 +141,6 @@ void	check_flood(t_mlx *init, t_coord origin);
 void	check_valid(t_mlx *init);
 int		check_map(char *map, t_mlx *init);
 void	check_map_logic(t_mlx *init, char *map, int f, int len);
+void	ft_map_render_strano(t_mlx *init, t_tile **tile_map, int x, int y);
 
 #endif

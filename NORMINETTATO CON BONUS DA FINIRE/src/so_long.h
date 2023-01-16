@@ -14,48 +14,6 @@
 # define MLX_SYNC_WIN_FLUSH_CMD		2
 # define MLX_SYNC_WIN_CMD_COMPLETED	3
 
-typedef struct struct_kingo_img_anim
-{
-	void	*current_img;
-	int		anim_frames;
-	void	*img_1;
-	void	*img_2;
-	void	*img_5;
-	void	*img_6;
-	void	*img_7;
-	void	*img_8;
-	void	*img_9;
-	void	*img_10;
-}	t_kingo_anim;
-
-typedef struct struct_enemy_img_anim
-{
-	void	*current_img;
-	int		anim_frames;
-	void	*img_1;
-	void	*img_2;
-	void	*img_5;
-	void	*img_6;
-	void	*img_7;
-	void	*img_8;
-	void	*img_9;
-	void	*img_10;
-}	t_enemy_anim;
-
-typedef struct struct_c_img_anim
-{
-	void	*current_img;
-	int		anim_frames;
-	void	*img_0;
-	void	*img_1;
-}	t_c_img_anim;
-
-typedef struct struct_d_img_anim
-{
-	void	*current_img;
-	void	*img_1;
-}	t_door_anim;
-
 typedef struct s_coord
 {
 	int					x;
@@ -91,14 +49,9 @@ typedef struct struct_mlx
 	void				*win;
 	t_tile				**map;
 	void				*img;
-	t_c_img_anim		collect_img;
-	t_door_anim			door_img;
-	t_kingo_anim		kingo_img;
-	t_enemy_anim		enemy_img;
 	t_check				check;
 	t_coord				kingo;
 	t_coord				door;
-	t_coord				enemy;
 	int					collectible;
 	int					moves;
 	int					x;

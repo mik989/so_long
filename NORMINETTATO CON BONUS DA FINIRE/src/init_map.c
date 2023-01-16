@@ -5,7 +5,6 @@ void	ft_tilemap_alloc_logic(t_mlx *init, char *map, int *x, int *y)
 	int	i;
 
 	i = 0;
-	init->check.enemy = 0;
 	while (map[i])
 	{
 		if (*y == 1)
@@ -18,8 +17,6 @@ void	ft_tilemap_alloc_logic(t_mlx *init, char *map, int *x, int *y)
 			init->check.exit += 1;
 		if (map[i] == 'P')
 			init->check.player += 1;
-		if (map[i] == 'F')
-			init->check.enemy += 1;
 		i++;
 	}
 }
