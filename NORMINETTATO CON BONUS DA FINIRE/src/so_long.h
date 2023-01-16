@@ -105,6 +105,7 @@ typedef struct struct_mlx
 	int					y;
 }						t_mlx;
 
+void	ft_map_render_strano(t_mlx *init, t_tile **tile_map, int x, int y);
 void	ft_move_up(t_mlx *init, int x, int y);
 void	ft_move_down(t_mlx *init, int x, int y);
 void	ft_move_left(t_mlx *init, int x, int y);

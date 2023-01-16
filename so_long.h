@@ -105,23 +105,23 @@ typedef struct struct_mlx
 	int					y;
 }						t_mlx;
 
-
+void	ft_map_render_strano(t_mlx *init, t_tile **tile_map, int x, int y);
 void	ft_move_up(t_mlx *init, int x, int y);
 void	ft_move_down(t_mlx *init, int x, int y);
 void	ft_move_left(t_mlx *init, int x, int y);
 void	ft_move_right(t_mlx *init, int x, int y);
-void    ft_up(t_mlx *init, int x, int y);
-void    ft_down(t_mlx *init, int x, int y);
-void    ft_left(t_mlx *init, int x, int y);
-void    ft_right(t_mlx *init, int x, int y);
-void    ft_key_end_logic(t_mlx *init);
-void move_up_logic(t_mlx *init, int x, int y);
-void move_down_logic(t_mlx *init, int x, int y);
-void move_left_logic(t_mlx *init, int x, int y);
-void move_right_logic(t_mlx *init, int x, int y);
+void	ft_up(t_mlx *init, int x, int y);
+void	ft_down(t_mlx *init, int x, int y);
+void	ft_left(t_mlx *init, int x, int y);
+void	ft_right(t_mlx *init, int x, int y);
+void	ft_key_end_logic(t_mlx *init);
+void	move_up_logic(t_mlx *init, int x, int y);
+void	move_down_logic(t_mlx *init, int x, int y);
+void	move_left_logic(t_mlx *init, int x, int y);
+void	move_right_logic(t_mlx *init, int x, int y);
 void	ft_init_img(t_mlx *init);
 void	enemy_move_y(t_mlx *init, int x, int y);
-void    enemy_move_x(t_mlx *init, int x, int y);
+void	enemy_move_x(t_mlx *init, int x, int y);
 void	ft_enemy_mov(t_mlx *init);
 int		animazioni(t_mlx *init);
 void	ft_map_render(t_mlx *init, t_tile **tile_map, int x, int y);

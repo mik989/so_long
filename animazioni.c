@@ -87,6 +87,7 @@ int	animazioni(t_mlx *init)
 	door_animation(init, &init->door_img);
 	kingo_animation(&init->kingo_img);
 	enemy_animation(&init->enemy_img);
-	ft_map_render(init, init->map, init->x, init->y);
+	//ft_map_render(init, init->map, init->x, init->y);
+	ft_map_render_strano(init, init->map, init->x, init->y);
 	return (1);
 }

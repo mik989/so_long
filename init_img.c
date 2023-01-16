@@ -4,7 +4,7 @@ void    ft_init_collect(t_mlx *init)
 {
         init->collectible = 0;
         init->moves = 0;
-		init->collect_img.anim_frames = 10;	
+		init->collect_img.anim_frames = 200;	
         init->collect_img.current_img = "sprites/col/key.xpm";	
 		init->collect_img.img_0 = "sprites/col/key_star.xpm";
 		init->collect_img.img_1 = "sprites/col/key.xpm";			
@@ -19,7 +19,7 @@ void    ft_init_exit(t_mlx *init)
 }
 void    ft_init_enemy(t_mlx *init)
 {
-    init->enemy_img.anim_frames = 5;	
+    init->enemy_img.anim_frames = 75;	
     init->enemy_img.current_img = "sprites/enemy/en_0.xpm";
 	init->enemy_img.img_1 = "sprites/enemy/en_1.xpm";	
 	init->enemy_img.img_2 = "sprites/enemy/en_2.xpm";		
@@ -36,7 +36,7 @@ void    ft_init_kingo(t_mlx *init)
 {
         init->collectible = 0;
         init->moves = 0;
-		init->kingo_img.anim_frames = 5;	
+		init->kingo_img.anim_frames = 75;	
         init->kingo_img.current_img = "sprites/kingo/kingo_0.xpm";	
 		init->kingo_img.img_1 = "sprites/kingo/kingo_1.xpm";	
 		init->kingo_img.img_2 = "sprites/kingo/kingo_2.xpm";		

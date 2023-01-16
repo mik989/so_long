@@ -46,17 +46,15 @@ SRCS_B 	=	src_bonus/so_long.c \
 
 NAME		= so_long
 NAME_B		= so_long_bonus
-minilibx	= mlx/libmlx.a
 OBJS_DIR	= objs/
 OBJS_DIR_B	= objs_b/
 OBJS		= $(SRCS:.c=.o)
 OBJS_B		= $(SRCS_B:.c=.o)
 OBJECTS_PREFIXED = $(addprefix $(OBJS_DIR), $(OBJS))
 OBJECTS_PREFIXED_B = $(addprefix $(OBJS_DIR_B), $(OBJS_B))
-CC			= gcc
+CC			= gcc -g
 CC_FLAGS	= -Wall -Werror -Wextra
-MLB_FLAGS	= --no-pie -lm -lX11 -lXext libft/libft.a mlx/libmlx.a 
-
+MLB_FLAGS	= libft/libft.a mlx/libmlx.a -no-pie -lm -lX11 -lXext
 $(OBJS_DIR)%.o : %.c src/so_long.h
 	@mkdir -p $(OBJS_DIR)
 	@mkdir -p $(OBJS_DIR)src
@@ -82,8 +80,8 @@ all: $(NAME)
 bonus:	$(NAME_B)
 
 maker:
-	@make -C mlx
-	@make bonus -C libft
+	make -C mlx
+	@make -C libft
 
 clean:
 	@rm -rf $(OBJS_DIR)
