@@ -49,7 +49,7 @@ void	start(t_mlx *init, int ac, char **av)
 
 	if (ac == 2)
 	{
-		init->map = 0;
+		//init->map = 0;
 		array_map = ft_get_map(av[1]);
 		init->map = ft_tilemap_alloc(array_map, init);
 		ft_init_map(init, array_map, 0, 0);
