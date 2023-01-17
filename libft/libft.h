@@ -6,7 +6,7 @@
 /*   By: mgirardi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 17:36:19 by mgirardi          #+#    #+#             */
-/*   Updated: 2022/10/11 17:36:32 by mgirardi         ###   ########.fr       */
+/*   Updated: 2023/01/17 21:21:51 by mgirardi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # include <unistd.h>
 # include <fcntl.h>
 
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE 1
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1
 # endif
 
 typedef struct s_list

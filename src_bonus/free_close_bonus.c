@@ -1,40 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   free_close_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgirardi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/12 11:43:48 by mgirardi          #+#    #+#             */
-/*   Updated: 2023/01/17 21:24:07 by mgirardi         ###   ########.fr       */
+/*   Created: 2023/01/17 21:11:30 by mgirardi          #+#    #+#             */
+/*   Updated: 2023/01/17 21:11:32 by mgirardi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "so_long_bonus.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+void	ft_freemap(t_mlx *init)
 {
-	int		i;
-	int		j;
-	char	*str;
+	t_tile	**tilemap;
+	int		y;
 
-	i = 0;
-	j = 0;
-	str = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 2));
-	if (!str)
-		return (NULL);
-	while (s1[i] != '\0')
+	tilemap = init->map;
+	y = init->y;
+	while (y--)
 	{
-		str[i] = s1[i];
-		i++;
+		free(*init->map);
+		init->map++;
 	}
-	while (s2[j] != '\0')
-	{
-		str[i] = s2[j];
-		i++;
-		j++;
-	}
-	str[i] = '\0';
-	str[i + 1] = '\0';
-	return (str);
+	free(tilemap);
+}
+
+int	ft_close(t_mlx *init)
+{
+	mlx_destroy_window(init->mlx, init->win);
+	mlx_destroy_display(init->mlx);
+	free(init->mlx);
+	ft_freemap(init);
+	exit(0);
+	return (0);
 }
